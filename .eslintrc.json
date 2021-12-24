@@ -46,15 +46,22 @@
         "react-hooks/exhaustive-deps": "warn",
         "import/prefer-default-export": "off",
         "react/prop-types": "off",
+        "semi": [
+            "error",
+            "never"
+        ],
+        "eqeqeq": "error",
+        "react/jsx-no-useless-fragment": "off",
         "react/function-component-definition": [
             2,
             {
               "namedComponents": "arrow-function"
             //   "unnamedComponents": "arrow-function"
             }
-          ]
+          ],
         // "func-names": ["error", "as-needed"],
         // "func-style": ["error", "declaration", { "allowArrowFunctions": true }]
+        "no-console": 0
     },
     "settings": {
         "import/resolver": {

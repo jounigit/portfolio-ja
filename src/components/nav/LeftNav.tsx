@@ -47,7 +47,7 @@ const linkStyle = {
   margin: '1rem',
   textDecoration: 'none',
   color: colors.orange,
-  fontSize: '1.75rem',
+  fontSize: '1.4rem',
 }
 
 const LinkText = styled.h2`
@@ -85,7 +85,6 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
           to="/about"
           onClick={() => toggleOpen(!open)}
           activeStyle={{
-            fontWeight: 'bold',
             color: colors.grey3,
           }}
         >
@@ -98,13 +97,13 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
       <LinkText>
         <NavLink
           style={linkStyle}
-          to="/more"
+          to="/veistokset"
           onClick={() => toggleOpen(!open)}
           activeStyle={{
             color: colors.grey3,
           }}
         >
-          Work
+          veistokset
         </NavLink>
       </LinkText>
     </li>

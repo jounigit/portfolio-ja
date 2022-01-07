@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { CategoryList } from '../components/category/CategoryList'
+import { AlbumsList } from '../components/album/AlbumList'
+import { Welcome } from '../components/welcome/Welcome'
+// import { CategoryList } from '../components/category/CategoryList'
 
 const fadeIn = keyframes`
   from {
@@ -22,8 +24,9 @@ const FadeDiv = styled.div<Props>`
 const Home: React.FC = () => (
   <>
     <FadeDiv timein="0.3s">
-      <CategoryList />
-      <p>ÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖ</p>
+      <Welcome />
+      <AlbumsList />
+      {/* <CategoryList /> */}
     </FadeDiv>
   </>
 )

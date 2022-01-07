@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { SiteContent } from '../../../styles/styles'
-import { TABLET } from '../../../styles/theme/breakpoints'
+import { SiteContent } from '../../styles/styles'
+import { TABLET } from '../../styles/theme/breakpoints'
 
 export const AlbumListContainer = styled(SiteContent)`
   display: grid;

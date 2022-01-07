@@ -1,19 +1,22 @@
 import React, { FC } from 'react'
-import { pictureListInThree } from '../../../data/pictureListInThree'
+import { IPicture } from '../../types'
+// import { pictureListInThree } from '../../../data/pictureListInThree'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import {
-  AlbumContainer, Title, ImageBox, Text,
+  AlbumContainer, Title,
+  ImageBox,
+  Text,
 } from './Album.styles'
 
 export type AlbumProps = {
   id: number,
   title: string,
-  imageUrl?: string,
-  content: string
+  content: string,
+  pictures: IPicture[]
 }
 
 export const Album: FC<AlbumProps> = ({
-  title, content,
+  title, content, pictures,
 }) => (
   <>
 
@@ -25,7 +28,7 @@ export const Album: FC<AlbumProps> = ({
 
       <ImageBox>
         <PictureMediaQueries
-          imageList={pictureListInThree}
+          imageList={pictures}
           width={150}
           height={150}
         />

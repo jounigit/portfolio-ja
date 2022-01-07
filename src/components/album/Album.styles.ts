@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { BaseContainer } from '../../../styles/styles'
-import { TABLET } from '../../../styles/theme/breakpoints'
+import { BaseContainer } from '../../styles/styles'
+import { TABLET } from '../../styles/theme/breakpoints'
 
 export const AlbumContainer = styled(BaseContainer)`
     flex-wrap: wrap;

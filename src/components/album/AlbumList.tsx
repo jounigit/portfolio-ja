@@ -1,24 +1,52 @@
-import React, { FC } from 'react'
-import { Album, AlbumProps } from './Album'
+import React from 'react'
+import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
+import { useAlbums } from './useAlbums'
+// import { usePictures } from '../picture/usePicture'
 
-type AlbumsProps = {
-    albums: AlbumProps[]
+export const AlbumsList = (): JSX.Element => {
+  const albumsQuery = useAlbums()
+  // const picturesQuery = usePictures()
+  let albums
+
+  // if (picturesQuery.isSuccess) {
+  //   console.log('# Pictures form albumList: ', picturesQuery.data)
+  // }
+
+  // if (albums.status === 'loading') {
+  //   return <div>loading...</div>
+  // }
+
+  // if (albums.error instanceof Error) {
+  //   return (
+  //     <div>
+  //       An error occurred:
+  //       {albums.error.message}
+  //     </div>
+  //   )
+  // }
+
+  if (albumsQuery.isSuccess) {
+    albums = albumsQuery.data
+  }
+
+  console.log('# AlbumList page: ', albums)
+
+  const mappedData = albums?.map((a) => (
+    <AlbumListItem
+      key={a.id}
+      id={a.id}
+      title={a.title}
+      slug={a.slug}
+      content={a.content}
+      pictures={a.pictures}
+    />
+  ))
+
+  return (
+    <AlbumListContainer>
+      <h3>Albumit</h3>
+      { mappedData && mappedData }
+    </AlbumListContainer>
+  )
 }
-
-export const AlbumsList: FC<AlbumsProps> = ({ albums }) => (
-  <AlbumListContainer>
-    <>
-      {albums.map((album) => (
-        <Album
-          key={album.id}
-          title={album.title}
-          imageUrl={album.imageUrl}
-          content={album.content}
-          id={0}
-        />
-      ))}
-    </>
-  </AlbumListContainer>
-
-)

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+// import { basename } from 'path'
 
 const queryClient = new QueryClient()
 
@@ -17,3 +18,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 )
+
+// eslint-disable-next-line no-lone-blocks
+{ /* <BrowserRouter basename={'/joku-kansio'} */ }

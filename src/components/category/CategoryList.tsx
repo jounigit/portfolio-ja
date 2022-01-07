@@ -28,7 +28,6 @@ export const CategoryList = (): JSX.Element => {
 
   return (
     <>
-      <p>kato konsoli</p>
       { mappedData && mappedData }
     </>
   )

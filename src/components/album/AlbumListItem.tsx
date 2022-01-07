@@ -21,33 +21,25 @@ export const AlbumListItem: FC<AlbumListItemProps> = (
 ) => {
   const pictureData = usePictures()
 
-  const albumPictures = pictureData.map(
-    (p) => (pictures.includes(p.id) ? p : null),
-  ).filter((p) => p !== null)
+  const albumPictures = pictureData
+    .map((p) => (pictures.includes(p.id) ? p : null))
+    .filter((p) => p !== null)
+    .filter(isNotNull)
 
-  const picsInThree = albumPictures.slice(0, 2)
-
-  // function isNotNull
-  // <TValueType>(value: TValueType | null): value is TValueType {
-  //   return value !== null
-  // }
-
-  const purePics = picsInThree.filter(isNotNull)
+  const threePics = albumPictures.slice(0, 2)
 
   return (
     <AlbumContainer>
       <Title>
         <h2>{title}</h2>
       </Title>
-      { picsInThree && (
       <ImageBox>
         <PictureMediaQueries
-          imageList={purePics}
+          imageList={threePics}
           width={150}
           height={150}
         />
       </ImageBox>
-      )}
       <Text>
         <p>
           {content}

@@ -3,6 +3,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+import { Album } from './components/album/Album'
+// import { AlbumFetch } from './components/album/AlbumFetch'
 // import { Category } from './components/category/Category'
 import { CategoryDetails } from './components/category/CategoryDetails'
 import Navbar from './components/nav/Navbar'
@@ -17,6 +19,7 @@ const App: React.FC = () => (
     <SiteContent>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/album/:id" component={Album} />
         {/* <Route
           path="/category/:id"
           render={(props) => <CategoryDetails id={props.match.params.id} />

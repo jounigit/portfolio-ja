@@ -2,10 +2,9 @@ import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
 import { TABLET } from '../../styles/theme/breakpoints'
 
-export const AlbumContainer = styled(BaseContainer)`
+export const AlbumListItemContainer = styled(BaseContainer)`
     flex-wrap: wrap;
     padding: 1em;
-    margin-top: 130px;
 `
 export const Title = styled.div`
     flex: 1 100%;

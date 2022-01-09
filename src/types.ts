@@ -29,6 +29,11 @@ export interface IAlbum extends BaseModel {
     pictures: Array<string>;
 }
 
+export interface IAlbumDetails extends BaseModel {
+    category?: string;
+    pictures: IPicture[]
+}
+
 export interface IPicture extends BaseModel {
     year?: number;
     image: string;

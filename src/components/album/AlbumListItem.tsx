@@ -1,12 +1,14 @@
 import React, { FC } from 'react'
-import {
-  AlbumContainer, Title,
-  ImageBox,
-  Text,
-} from './Album.styles'
+import { Link } from 'react-router-dom'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import { usePictures } from '../picture/usePicture'
 import { isNotNull } from '../../types'
+import {
+  AlbumListItemContainer,
+  Title,
+  ImageBox,
+  Text,
+} from './AlbumListItem.styles'
 
 export type AlbumListItemProps = {
     id: string,
@@ -16,9 +18,10 @@ export type AlbumListItemProps = {
     pictures: string[]
 }
 
-export const AlbumListItem: FC<AlbumListItemProps> = (
-  { title, content, pictures },
-) => {
+export const AlbumListItem:
+FC<AlbumListItemProps> = ({
+  id, title, content, pictures,
+}) => {
   const pictureData = usePictures()
 
   const albumPictures = pictureData
@@ -29,7 +32,7 @@ export const AlbumListItem: FC<AlbumListItemProps> = (
   const threePics = albumPictures.slice(0, 2)
 
   return (
-    <AlbumContainer>
+    <AlbumListItemContainer>
       <Title>
         <h2>{title}</h2>
       </Title>
@@ -44,7 +47,10 @@ export const AlbumListItem: FC<AlbumListItemProps> = (
         <p>
           {content}
         </p>
+        <Link to={`/album/${id}`}>
+          Linkki
+        </Link>
       </Text>
-    </AlbumContainer>
+    </AlbumListItemContainer>
   )
 }

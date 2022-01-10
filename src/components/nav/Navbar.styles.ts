@@ -22,7 +22,7 @@ export const NavbarContainer = styled.nav<IProps>`
     float: left;
     margin-bottom: 50px;
     padding: 0 20px;
-    background: rgba(255,255,255,${(p) => (p.scrollPos === 0 ? 0.5 : 1)});
+    background: rgba(203,198,198,${(p) => (p.scrollPos === 0 ? 0.5 : 1)});
     box-shadow: var(--shadow-primary);
     position: fixed;
     top: 0;

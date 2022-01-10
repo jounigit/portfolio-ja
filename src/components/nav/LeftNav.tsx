@@ -5,6 +5,7 @@ import React, {
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import colors from '../../styles/theme/colors'
+import Dropdown from './dropdown'
 
 interface INav {
   open: boolean;
@@ -46,13 +47,13 @@ flex-flow: row nowrap;
 const linkStyle = {
   margin: '1rem',
   textDecoration: 'none',
-  color: colors.orange,
+  color: colors.white,
   fontSize: '1.4rem',
 }
 
 const LinkText = styled.h2`
    font-size: 1.75rem;
-   color: ${colors.orange};
+   /* color: ${colors.white}; */
 `
 
 type Props = {
@@ -105,6 +106,11 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
         >
           veistokset
         </NavLink>
+      </LinkText>
+    </li>
+    <li>
+      <LinkText>
+        <Dropdown activatorText="Galleria" />
       </LinkText>
     </li>
   </Ul>

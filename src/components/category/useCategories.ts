@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { useQuery } from 'react-query'
+import { useQuery, UseQueryResult } from 'react-query'
 import api from '../../clientProvider/axiosConfig'
-import { ICategory } from './categoryTypes'
+import { ICategory } from '../../types'
 
 const getCategories = async (): Promise<ICategory[]> => {
   const { data } = await api.get('/categories')
@@ -10,17 +10,23 @@ const getCategories = async (): Promise<ICategory[]> => {
   return data
 }
 
-// eslint-disable-next-line
-export const useCategories = () => useQuery(
-  ['categories'],
-  getCategories,
-)
+export function useCategories(): UseQueryResult<ICategory[], unknown> {
+  return useQuery('categories', getCategories)
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useCategoriesQuery = (select: any) => useQuery(['categories'], getCategories, { select })
+export function useCategoriesData(): ICategory[] {
+  const { isError, data } = useQuery('albums', getCategories)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useCategory = (id: any) => useCategoriesQuery((data: any[]) => data.find((todo) => todo.id === id))
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
+
+  if (data !== undefined) {
+    return data
+  }
+  const emptyData = new Array<ICategory>()
+  return emptyData
+}
 
 // #############################################################
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

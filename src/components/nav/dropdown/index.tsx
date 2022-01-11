@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { Wrapper, ActivatorButton, DropdownList } from './styles'
 
 interface IDropdownItem {
@@ -17,12 +18,12 @@ interface IProps {
 const dropdownItems = [
   {
     id: 1,
-    url: '/veistokset',
+    url: '/album/veistokset',
     text: 'veistokset',
   },
   {
     id: 2,
-    url: '/piirustukset',
+    url: '/album/piirustukset',
     text: 'piirustukset',
   },
 ]
@@ -31,7 +32,7 @@ const dropdownItems = [
 const Dropdown = ({
   activatorText = 'Dropdown',
   items = dropdownItems,
-}: IProps) => {
+}: IProps): JSX.Element => {
   const activatorRef = React.useRef<HTMLButtonElement | null>(null)
   const listRef = React.useRef<HTMLUListElement | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
@@ -64,8 +65,7 @@ const Dropdown = ({
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const handleClickOutside = (event: any) => {
+  const handleClickOutside = (event: any): void => {
     if (
       listRef.current!.contains(event.target)
       || activatorRef.current!.contains(event.target)
@@ -111,9 +111,9 @@ const Dropdown = ({
       <DropdownList id="dropdown1" ref={listRef} active={isOpen} role="list">
         {items.map((item, index) => (
           <li key={item.id}>
-            <a href={item.url} onFocus={() => focusHandler(index)}>
+            <Link to={item.url} onFocus={() => focusHandler(index)}>
               {item.text}
-            </a>
+            </Link>
           </li>
         ))}
       </DropdownList>
@@ -122,3 +122,8 @@ const Dropdown = ({
 }
 
 export default Dropdown
+
+// eslint-disable-next-line no-lone-blocks
+{ /* <a href={item.url} onFocus={() => focusHandler(index)}>
+              {item.text}
+            </a> */ }

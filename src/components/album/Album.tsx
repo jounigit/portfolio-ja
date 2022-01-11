@@ -1,9 +1,12 @@
 import React, { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-// IAlbum,
-  isNotNull,
+  IPicture,
+  // IAlbum,
+  // isNotNull,
+  isPictureArray,
 } from '../../types'
+import { getPicsByIds } from '../picture/sharePictures'
 import { usePictures } from '../picture/usePicture'
 // import { IPicture } from '../../types'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
@@ -12,38 +15,29 @@ import {
   ImageBox,
   Text,
 } from './Album.styles'
-import { useAlbum } from './useAlbums'
+import { useAlbumsData } from './useAlbums'
 
 type AlbumParams = {
-  id: string;
+  slug: string;
 };
 
 export const Album: FC = () => {
-  const { id } = useParams<AlbumParams>()
-  const { isLoading, error, data } = useAlbum(id)
+  const { slug } = useParams<AlbumParams>()
+  const albumsData = useAlbumsData()
   const pictureData = usePictures()
+  let albumPics = new Array<IPicture>()
 
-  if (isLoading) {
-    console.log('Album loading: ', data)
-    return <p>Loading...</p>
+  const album = albumsData.find((a) => a.slug === slug)
+
+  if (album === undefined) {
+    return <div>Album is undefined.</div>
   }
 
-  if (error instanceof Error) {
-    console.log('Album error: ', data)
-    return (
-      <p> Error is -- </p>
-    )
-  }
+  const picsIds = album.pictures
 
-  console.log('Album after error: ', data)
+  const albumPicsArr = getPicsByIds(picsIds, pictureData)
 
-  const album = data && data[0]
-  console.log('Album type pics: ', album.pictures)
-
-  const albumPictures = pictureData
-    .map((p) => (album.pictures.includes(p.id) ? p : null))
-    .filter((p) => p !== null)
-    .filter(isNotNull)
+  if (isPictureArray(albumPicsArr)) albumPics = albumPicsArr
 
   return (
     <AlbumContainer>
@@ -59,7 +53,7 @@ export const Album: FC = () => {
       </Text>
       <ImageBox>
         <PictureMediaQueries
-          imageList={albumPictures}
+          imageList={albumPics}
           width={250}
           height={250}
         />
@@ -68,3 +62,7 @@ export const Album: FC = () => {
     </AlbumContainer>
   )
 }
+
+// const albumPicsProm = picsIds.map(
+//   (id) => (pictureData.find((p) => p.id === id)),
+// )

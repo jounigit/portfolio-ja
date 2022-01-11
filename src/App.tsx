@@ -19,12 +19,7 @@ const App: React.FC = () => (
     <SiteContent>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/album/:id" component={Album} />
-        {/* <Route
-          path="/category/:id"
-          render={(props) => <CategoryDetails id={props.match.params.id} />
-        }
-        /> */}
+        <Route exact path="/album/:slug" component={Album} />
         <Route path="/category/:id" component={CategoryDetails} />
       </Switch>
     </SiteContent>

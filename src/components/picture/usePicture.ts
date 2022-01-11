@@ -1,7 +1,5 @@
 import {
-//   QueryObserverSuccessResult,
   useQuery,
-//   UseQueryResult,
 } from 'react-query'
 import api from '../../clientProvider/axiosConfig'
 import { IPicture } from '../../types'
@@ -12,15 +10,12 @@ const getPictures = async (): Promise<IPicture[]> => {
   return data
 }
 
-// const isFetchedWithSuccess = <TData, TError = unknown>(
-//   query: UseQueryResult<TData, TError>,
-// ): query is QueryObserverSuccessResult
-// <TData, TError> => !query.isError
-// && !query.isLoading && query.data !== undefined
+export function usePictures(): IPicture[] {
+  const { isError, data } = useQuery('pictures', getPictures)
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function usePictures() {
-  const { data } = useQuery('pictures', getPictures)
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
 
   if (data !== undefined) {
     return data

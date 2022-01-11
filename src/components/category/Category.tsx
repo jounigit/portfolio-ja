@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
+import { ICategory } from '../../types'
 import {
   CategoryContainer, Title, Text,
 } from './Category.styles'
-import { ICategory } from './categoryTypes'
 
 export const Category: FC<ICategory> = ({
   title, content,

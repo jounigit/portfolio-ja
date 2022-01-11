@@ -2,13 +2,14 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import { usePictures } from '../picture/usePicture'
-import { isNotNull } from '../../types'
+import { IPicture, isPictureArray } from '../../types'
 import {
   AlbumListItemContainer,
   Title,
   ImageBox,
   Text,
 } from './AlbumListItem.styles'
+import { getPicsByIds } from '../picture/sharePictures'
 
 export type AlbumListItemProps = {
     id: string,
@@ -20,16 +21,16 @@ export type AlbumListItemProps = {
 
 export const AlbumListItem:
 FC<AlbumListItemProps> = ({
-  id, title, content, pictures,
+  title, slug, content, pictures,
 }) => {
   const pictureData = usePictures()
+  let threePics = new Array<IPicture>()
 
-  const albumPictures = pictureData
-    .map((p) => (pictures.includes(p.id) ? p : null))
-    .filter((p) => p !== null)
-    .filter(isNotNull)
+  const albumPicsArr = getPicsByIds(pictures, pictureData)
 
-  const threePics = albumPictures.slice(0, 2)
+  if (isPictureArray(albumPicsArr)) {
+    threePics = albumPicsArr.slice(0, 2)
+  }
 
   return (
     <AlbumListItemContainer>
@@ -47,7 +48,7 @@ FC<AlbumListItemProps> = ({
         <p>
           {content}
         </p>
-        <Link to={`/album/${id}`}>
+        <Link to={`/album/${slug}`}>
           Linkki
         </Link>
       </Text>

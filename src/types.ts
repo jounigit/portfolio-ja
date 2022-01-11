@@ -25,6 +25,7 @@ export interface ICategory extends BaseModel {
 }
 
 export interface IAlbum extends BaseModel {
+    year?: number;
     category?: string;
     pictures: Array<string>;
 }
@@ -45,10 +46,22 @@ export interface IPicture extends BaseModel {
 
 export type INewAlbum = Omit<IAlbum, 'id'>
 export type INewCategory = Omit<ICategory, 'id'>
+export type ICategoryListItem = Omit<ICategory, 'content' | 'user' | 'albums'>
 
 // :::::::::::::::::::::: utils :::::::::::::::::::::::::::::::::::
 // test not null typeguard
 export function isNotNull
 <TValueType>(value: TValueType | null): value is TValueType {
   return value !== null
+}
+
+export function isPictureArray(value : unknown) : value is IPicture[] {
+  if (!Array.isArray(value)) {
+    return false
+  }
+
+  if (value.some((v) => typeof v !== 'object')) {
+    return false
+  }
+  return true
 }

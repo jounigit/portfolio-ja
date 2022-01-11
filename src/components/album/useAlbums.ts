@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery, UseQueryResult } from 'react-query'
 import api from '../../clientProvider/axiosConfig'
 import { IAlbum } from '../../types'
 
@@ -7,8 +7,7 @@ const getAlbums = async (): Promise<IAlbum[]> => {
   return data
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const getAlbum = async (id: string | undefined) => {
+export const getAlbum = async (id: string | undefined): Promise<IAlbum> => {
   if (typeof id === 'undefined') {
     Promise.reject(new Error('Invalid id'))
   }
@@ -17,67 +16,42 @@ export const getAlbum = async (id: string | undefined) => {
   return data
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function useAlbums() {
+export function useAlbums(): UseQueryResult<IAlbum[], unknown> {
   return useQuery('albums', getAlbums)
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function useAlbum(id: string | undefined) {
+export function useAlbum(id: string | undefined)
+: UseQueryResult<IAlbum, unknown> {
   return useQuery(['album', id], () => getAlbum(id), {
     enabled: Boolean(id),
   })
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function useAlbumsData() {
-  const { data } = useQuery('albums', getAlbums)
+export function useAlbumsData(): IAlbum[] {
+  const { isError, data } = useQuery('albums', getAlbums)
+
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
 
   if (data !== undefined) {
     return data
   }
-  const dataE = new Array<IAlbum>()
-  return dataE
+  const emptyData = new Array<IAlbum>()
+  return emptyData
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const fetchAlbum = async (id: string) => {
-  const response = await fetch(`http://localhost:3001/albums/${id}`)
+// const fetchAlbum = async (id: string): Promise<unknown> => {
+//   const response = await fetch(`http://localhost:3001/albums/${id}`)
 
-  if (!response.ok) {
-    throw new Error(response.statusText)
-  }
+//   if (!response.ok) {
+//     throw new Error(response.statusText)
+//   }
 
-  return response.json()
-}
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function useAlbumFetch(id: string) {
-  return useQuery(['album', { id }], () => fetchAlbum(id))
-}
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// export function useAlbum(id: string | undefined) {
-//   return useQuery(['album', id], () => getAlbum(id))
+//   return response.json()
 // }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// export function useAlbum(id: string | undefined) {
-//   const { data } = useQuery(['album', id], () => getAlbum(id), {
-//     enabled: Boolean(id),
-//   })
-
-//   if (data !== undefined) {
-//     return data
-//   }
-
-//   const emptyAlbum: IAlbum = {
-//     id: '',
-//     title: '',
-//     slug: '',
-//     content: '',
-//     pictures: [],
-//     user: '',
-//   }
-//   return emptyAlbum
+// // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// export function useAlbumFetch(id: string) {
+//   return useQuery(['album', { id }], () => fetchAlbum(id))
 // }

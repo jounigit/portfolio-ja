@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-size: 16px; */
     font-size: clamp(16px, 2vw, 20px);
     /* vars */
-    --bg-primary: rgb(255,255,255,0.5);
+    --bg-primary: rgb(255,255,255,0.7);
     --shadow-primary: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
@@ -48,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     color: #686868;
     /* font-size: clamp(1.75rem, 2vw, 2.7rem); */
   }

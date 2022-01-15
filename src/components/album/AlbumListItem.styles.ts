@@ -17,5 +17,7 @@ export const ImageBox = styled.div`
 }
 `
 export const Text = styled.div`
-    flex: 1;
+    /* flex: 1; */
+    margin: 0 0 0.5em;
+    /* font-size: 0.2em; */
 `

@@ -52,6 +52,7 @@ FC<AlbumListItemProps> = ({
         <Link to={`/album/${slug}`}>
           Linkki
         </Link>
+
       </Text>
     </AlbumListItemContainer>
   )

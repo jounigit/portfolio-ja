@@ -11,7 +11,7 @@ import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import {
   AlbumContainer, Title,
   ImageBox,
-  // Text,
+  Text,
 } from './Album.styles'
 import { useAlbumsData } from './useAlbums'
 
@@ -38,10 +38,14 @@ export const Album: FC = () => {
 
   if (isPictureArray(albumPicsArr)) albumPics = albumPicsArr
 
-  // if (album.content)
+  if (album.category) console.log('## Album category:: ', album.category)
+  const isGalleria = album?.category
+  && album.category === '61ddd9ca7b278bacc2c31aed'
 
   const innerHtmlTxt = album?.content
   && <div dangerouslySetInnerHTML={{ __html: album.content }} />
+
+  console.log('## Album is galleria:: ', isGalleria)
 
   return (
     <AlbumContainer>
@@ -50,7 +54,16 @@ export const Album: FC = () => {
           {album.title}
         </h2>
       </Title>
-      {innerHtmlTxt && innerHtmlTxt}
+      { isGalleria && (
+      <ImageBox full>
+        <PictureMediaQueries
+          imageList={albumPics}
+          width={250}
+          height={250}
+        />
+      </ImageBox>
+      )}
+      { !isGalleria && (
       <ImageBox>
         <PictureMediaQueries
           imageList={albumPics}
@@ -58,6 +71,11 @@ export const Album: FC = () => {
           height={250}
         />
       </ImageBox>
+      )}
+
+      <Text>
+        {innerHtmlTxt && innerHtmlTxt}
+      </Text>
 
     </AlbumContainer>
   )

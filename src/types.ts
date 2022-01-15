@@ -18,7 +18,6 @@ export interface BaseModel {
     title: string;
     slug: string;
     content?: string;
-    user: string;
 }
 export interface ICategory extends BaseModel {
     albums: Array<string>;

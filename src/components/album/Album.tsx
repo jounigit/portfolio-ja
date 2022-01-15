@@ -1,19 +1,17 @@
+/* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import {
   IPicture,
-  // IAlbum,
-  // isNotNull,
   isPictureArray,
 } from '../../types'
 import { getPicsByIds } from '../picture/sharePictures'
 import { usePictures } from '../picture/usePicture'
-// import { IPicture } from '../../types'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import {
   AlbumContainer, Title,
   ImageBox,
-  Text,
+  // Text,
 } from './Album.styles'
 import { useAlbumsData } from './useAlbums'
 
@@ -25,6 +23,7 @@ export const Album: FC = () => {
   const { slug } = useParams<AlbumParams>()
   const albumsData = useAlbumsData()
   const pictureData = usePictures()
+
   let albumPics = new Array<IPicture>()
 
   const album = albumsData.find((a) => a.slug === slug)
@@ -39,6 +38,11 @@ export const Album: FC = () => {
 
   if (isPictureArray(albumPicsArr)) albumPics = albumPicsArr
 
+  // if (album.content)
+
+  const innerHtmlTxt = album?.content
+  && <div dangerouslySetInnerHTML={{ __html: album.content }} />
+
   return (
     <AlbumContainer>
       <Title>
@@ -46,11 +50,7 @@ export const Album: FC = () => {
           {album.title}
         </h2>
       </Title>
-      <Text>
-        <p>
-          {album.content}
-        </p>
-      </Text>
+      {innerHtmlTxt && innerHtmlTxt}
       <ImageBox>
         <PictureMediaQueries
           imageList={albumPics}
@@ -62,7 +62,3 @@ export const Album: FC = () => {
     </AlbumContainer>
   )
 }
-
-// const albumPicsProm = picsIds.map(
-//   (id) => (pictureData.find((p) => p.id === id)),
-// )

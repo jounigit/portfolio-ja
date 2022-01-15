@@ -4,6 +4,7 @@ import React, {
 } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+// import { JsxElement } from 'typescript'
 import colors from '../../styles/theme/colors'
 import Dropdown from './dropdown'
 
@@ -62,52 +63,43 @@ type Props = {
   // toggleOpen: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+interface INavProps extends Props {
+  link: string;
+  text: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const navLinkTmp = ({
+  open, toggleOpen, text = '', link = '/',
+}: INavProps) => (
+  <LinkText>
+    <NavLink
+      exact
+      style={linkStyle}
+      to={`${link}`}
+      onClick={() => toggleOpen(!open)}
+      activeStyle={{
+        color: colors.grey3,
+      }}
+    >
+      {text}
+    </NavLink>
+  </LinkText>
+)
+
 const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
   <Ul open={open}>
     <li>
-      <LinkText>
-        <NavLink
-          exact
-          style={linkStyle}
-          to="/"
-          onClick={() => toggleOpen(!open)}
-          activeStyle={{
-            color: colors.grey3,
-          }}
-        >
-          Home
-        </NavLink>
-      </LinkText>
+      {navLinkTmp({
+        open, toggleOpen, text: 'Home', link: '/',
+      })}
     </li>
     <li>
-      <LinkText>
-        <NavLink
-          style={linkStyle}
-          to="/about"
-          onClick={() => toggleOpen(!open)}
-          activeStyle={{
-            color: colors.grey3,
-          }}
-        >
-          About
-        </NavLink>
-      </LinkText>
+      {navLinkTmp({
+        open, toggleOpen, text: 'About', link: '/about',
+      })}
     </li>
 
-    <li>
-      <LinkText>
-        <NavLink
-          style={linkStyle}
-          to="/veistokset"
-          onClick={() => toggleOpen(!open)}
-          activeStyle={{
-            color: colors.grey3,
-          }}
-        >
-          veistokset
-        </NavLink>
-      </LinkText>
-    </li>
     <li>
       <LinkText>
         <Dropdown activatorText="Galleria" />

@@ -4,8 +4,6 @@ import {
   Switch,
 } from 'react-router-dom'
 import { Album } from './components/album/Album'
-// import { AlbumFetch } from './components/album/AlbumFetch'
-// import { Category } from './components/category/Category'
 import { CategoryDetails } from './components/category/CategoryDetails'
 import Navbar from './components/nav/Navbar'
 import Home from './pages/Home'

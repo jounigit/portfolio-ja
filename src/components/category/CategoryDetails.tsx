@@ -1,8 +1,6 @@
-/* eslint-disable max-len */
 import React, { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { Category } from './Category'
-// import { Category } from './Category'
 import { useCategoriesData } from './useCategories'
 
 type CParams = {
@@ -19,7 +17,7 @@ export const CategoryDetails: FC = (): JSX.Element => {
     return <div>Category is undefined.</div>
   }
 
-  console.log('# CATEGORY data: ', categoriesData[0], ' ====', id)
+  console.log('# CATEGORY data: ', category, ' ====', id)
 
   return (
     <div>
@@ -29,16 +27,7 @@ export const CategoryDetails: FC = (): JSX.Element => {
         slug={category.slug}
         content={category.content}
         albums={category.albums}
-        user={category.user}
       />
     </div>
   )
 }
-
-// return (
-//   <>
-//     {`View Account ID "${id}"`}
-//     {/* { categoryData} */}
-
-//   </>
-// )

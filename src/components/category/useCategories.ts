@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useQuery, UseQueryResult } from 'react-query'
 import api from '../../clientProvider/axiosConfig'
 import { ICategory } from '../../types'
@@ -31,7 +29,8 @@ export function useCategoriesData(): ICategory[] {
 // #############################################################
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // function isCategory(category: any): category is ICategory {
-//   return 'id' in category && 'title' in category && 'slug' in category && 'content' in category
+//   return 'id' in category && 'title' in category
+// && 'slug' in category && 'content' in category
 // }
 
 // async function getData(path: string): Promise<unknown> {
@@ -41,7 +40,8 @@ export function useCategoriesData(): ICategory[] {
 // }
 
 // export const getCategory = async (id: string): Promise<ICategory | null> => {
-//   const category = await getData(`http://localhost:8000/api/categories/${id}`)
+//   const category =
+// await getData(`http://localhost:8000/api/categories/${id}`)
 //   if (category && isCategory(category)) {
 //     console.log('# use CATEGORIES get: ', category)
 //     return category

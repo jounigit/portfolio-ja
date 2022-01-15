@@ -6,7 +6,6 @@ import { IPicture } from '../../types'
 
 const getPictures = async (): Promise<IPicture[]> => {
   const { data } = await api.get('/pictures')
-  console.log('# Use Pictures: ', data)
   return data
 }
 

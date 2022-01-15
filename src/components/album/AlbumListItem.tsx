@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
@@ -45,9 +46,9 @@ FC<AlbumListItemProps> = ({
         />
       </ImageBox>
       <Text>
-        <p>
-          {content}
-        </p>
+
+        {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
+
         <Link to={`/album/${slug}`}>
           Linkki
         </Link>

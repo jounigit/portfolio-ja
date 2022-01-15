@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react'
 import { ImageGrid, IImageGridProps } from './pictureMediaQuery.style'
-// import { IImage } from '../../data/pictureData'
 import { Modal } from '../modal/modal'
 import { ImageModal } from '../image-modal/image-modal'
 import { DataDiv } from '../atoms/DataDiv'
@@ -44,19 +43,3 @@ IPictureMediaProps> = ({ imageList, width, height }) => {
     </>
   )
 }
-
-// eslint-disable-next-line no-lone-blocks
-{ /* <DataDiv
-data={imageList}
-onDivClick={(item) => handleClick(
-  item.imageUrl, item.title, item.description,
-)}
-/> */ }
-// const handleClick = (
-//   img: string, header: string, text: string,
-// ): void => {
-//   setImageUrl(img)
-//   setHeaderText(header)
-//   setImageText(text)
-//   toggle()
-// }

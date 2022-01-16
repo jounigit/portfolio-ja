@@ -40,7 +40,7 @@ FC<AlbumListItemProps> = ({
   if (isPictureArray(albumPicsArr)) {
     threePics = albumPicsArr.slice(0, 2)
   }
-  console.log('## ALBUMLIST INFO:: ', info)
+  // console.log('## ALBUMLIST INFO:: ', info)
   return (
     <AlbumListItemContainer>
       {/* <Title>

@@ -25,6 +25,7 @@ export interface ICategory extends BaseModel {
 
 export interface IAlbum extends BaseModel {
     year?: number;
+    info?: string;
     category?: string;
     pictures: Array<string>;
 }

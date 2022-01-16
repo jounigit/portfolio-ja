@@ -11,22 +11,21 @@ export const AlbumsList = (): JSX.Element => {
     albums = albumsQuery.data
   }
 
-  // console.log('# AlbumList page: ', albums)
-
   const mappedData = albums?.map((a) => (
     <AlbumListItem
       key={a.id}
       id={a.id}
       title={a.title}
       slug={a.slug}
-      content={a.content}
+      info={a.info}
       pictures={a.pictures}
+      // width={100}
+      // height={100}
     />
   ))
 
   return (
     <AlbumListContainer>
-      <h3>Albumit</h3>
       { mappedData && mappedData }
     </AlbumListContainer>
   )

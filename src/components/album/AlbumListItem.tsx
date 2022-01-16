@@ -1,28 +1,36 @@
 /* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
+// import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import { usePictures } from '../picture/usePicture'
 import { IPicture, isPictureArray } from '../../types'
 import {
   AlbumListItemContainer,
-  Title,
+  // Title,
   ImageBox,
-  Text,
+  // Text,
+  ImageGridListItem,
+  Info,
+  InfoText,
 } from './AlbumListItem.styles'
 import { getPicsByIds } from '../picture/sharePictures'
+import { DataDivNoClick } from '../atoms/dataDivNoClick'
+// import {
+//   IImageGridProps,
+//   ImageGrid,
+// } from '../pictureLists/pictureMediaQuery.style'
 
-export type AlbumListItemProps = {
+export interface AlbumListItemProps {
     id: string,
     title: string,
     slug: string,
-    content: string | undefined,
+    info: string | undefined,
     pictures: string[]
 }
 
 export const AlbumListItem:
 FC<AlbumListItemProps> = ({
-  title, slug, content, pictures,
+  title, slug, info, pictures,
 }) => {
   const pictureData = usePictures()
   let threePics = new Array<IPicture>()
@@ -32,28 +40,29 @@ FC<AlbumListItemProps> = ({
   if (isPictureArray(albumPicsArr)) {
     threePics = albumPicsArr.slice(0, 2)
   }
-
+  console.log('## ALBUMLIST INFO:: ', info)
   return (
     <AlbumListItemContainer>
-      <Title>
+      {/* <Title>
         <h2>{title}</h2>
-      </Title>
+      </Title> */}
       <ImageBox>
-        <PictureMediaQueries
-          imageList={threePics}
-          width={150}
-          height={150}
-        />
+        <ImageGridListItem width={200} height={200}>
+          <DataDivNoClick data={threePics} />
+        </ImageGridListItem>
       </ImageBox>
-      <Text>
 
-        {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
+      <Info>
+        <h2>{title}</h2>
 
+        <InfoText>
+          {info}
+        </InfoText>
         <Link to={`/album/${slug}`}>
           Linkki
         </Link>
 
-      </Text>
+      </Info>
     </AlbumListItemContainer>
   )
 }

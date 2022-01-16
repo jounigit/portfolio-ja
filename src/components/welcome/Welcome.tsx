@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import { Text } from '../atoms'
-import { StyledWelcome, Item } from './Welcome.styles'
+// import { Text } from '../atoms'
+import { StyledWelcome } from './Welcome.styles'
 
 export const Welcome: FC = () => (
 
   <StyledWelcome>
-    <Item>
+    {/* <Item>
       <Text muted>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Maxime mollitia,
@@ -21,7 +21,7 @@ export const Welcome: FC = () => (
     </Item>
     <Item>
       <h3>Awards</h3>
-    </Item>
+    </Item> */}
   </StyledWelcome>
 
 )

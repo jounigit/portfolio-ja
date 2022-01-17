@@ -19,6 +19,14 @@ export interface BaseModel {
     slug: string;
     content?: string;
 }
+
+export interface IArticle extends BaseModel {
+  media: string;
+  year?: number;
+  journalist: string;
+  file: string;
+}
+
 export interface ICategory extends BaseModel {
     albums: Array<string>;
 }
@@ -47,6 +55,7 @@ export interface IPicture extends BaseModel {
 export type INewAlbum = Omit<IAlbum, 'id'>
 export type INewCategory = Omit<ICategory, 'id'>
 export type ICategoryListItem = Omit<ICategory, 'content' | 'user' | 'albums'>
+export type IArticleListItem = Omit<IArticle, 'id' | 'slug'>
 
 // :::::::::::::::::::::: utils :::::::::::::::::::::::::::::::::::
 // test not null typeguard

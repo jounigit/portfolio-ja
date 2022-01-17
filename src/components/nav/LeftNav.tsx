@@ -104,6 +104,11 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
         open, toggleOpen, text: 'Teokset', link: '/galleria',
       })}
     </li>
+    <li>
+      {navLinkTmp({
+        open, toggleOpen, text: 'Artikkelit', link: '/articles',
+      })}
+    </li>
 
     {/* <li>
       <LinkText>

@@ -1,24 +1,16 @@
 /* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-// import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
 import { usePictures } from '../picture/usePicture'
 import { IPicture, isPictureArray } from '../../types'
-import {
+import Info, {
   AlbumListItemContainer,
-  // Title,
   ImageBox,
-  // Text,
   ImageGridListItem,
-  Info,
   InfoText,
 } from './AlbumListItem.styles'
 import { getPicsByIds } from '../picture/sharePictures'
 import { DataDivNoClick } from '../atoms/dataDivNoClick'
-// import {
-//   IImageGridProps,
-//   ImageGrid,
-// } from '../pictureLists/pictureMediaQuery.style'
 
 export interface AlbumListItemProps {
     id: string,

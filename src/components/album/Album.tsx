@@ -7,12 +7,7 @@ import {
 } from '../../types'
 import { getPicsByIds } from '../picture/sharePictures'
 import { usePictures } from '../picture/usePicture'
-import { PictureMediaQueries } from '../pictureLists/PictureMediaQueries'
-import {
-  AlbumContainer, Title,
-  ImageBox,
-  Text,
-} from './Album.styles'
+import { AlbumDetails } from './AlbumDetails'
 import { useAlbumsData } from './useAlbums'
 
 type AlbumParams = {
@@ -32,51 +27,36 @@ export const Album: FC = () => {
     return <div>Album is undefined.</div>
   }
 
-  const picsIds = album.pictures
-
-  const albumPicsArr = getPicsByIds(picsIds, pictureData)
+  const albumPicsArr = getPicsByIds(album.pictures, pictureData)
 
   if (isPictureArray(albumPicsArr)) albumPics = albumPicsArr
 
-  if (album.category) console.log('## Album category:: ', album.category)
   const isGalleria = album?.category
-  && album.category === '61ddd9ca7b278bacc2c31aed'
+  && album.category.id === '61ddd9ca7b278bacc2c31aed'
 
   const innerHtmlTxt = album?.content
-  && <div dangerouslySetInnerHTML={{ __html: album.content }} />
-
-  console.log('## Album is galleria:: ', isGalleria)
+    ? <div dangerouslySetInnerHTML={{ __html: album.content }} />
+    : ''
 
   return (
-    <AlbumContainer>
-      <Title>
-        <h2>
-          {album.title}
-        </h2>
-      </Title>
-      { isGalleria && (
-      <ImageBox full>
-        <PictureMediaQueries
-          imageList={albumPics}
-          width={250}
-          height={250}
-        />
-      </ImageBox>
+    <>
+      { isGalleria
+      && (
+      <AlbumDetails
+        title={album.title}
+        pictures={albumPics}
+        content={innerHtmlTxt}
+        full
+      />
       )}
-      { !isGalleria && (
-      <ImageBox>
-        <PictureMediaQueries
-          imageList={albumPics}
-          width={250}
-          height={250}
+      { !isGalleria
+      && (
+        <AlbumDetails
+          title={album.title}
+          pictures={albumPics}
+          content={innerHtmlTxt}
         />
-      </ImageBox>
       )}
-
-      <Text>
-        {innerHtmlTxt && innerHtmlTxt}
-      </Text>
-
-    </AlbumContainer>
+    </>
   )
 }

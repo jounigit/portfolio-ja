@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import {
   DESKTOP, LAPTOP, MOBILE, TABLET,
 } from './theme/breakpoints'
-import bgImage from '../assets/default_bg.jpg'
+import bgImage from '../assets/taustakuva-01.jpg'
 
 const GlobalStyles = createGlobalStyle`
 

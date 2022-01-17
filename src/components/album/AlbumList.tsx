@@ -11,6 +11,8 @@ export const AlbumsList = (): JSX.Element => {
     albums = albumsQuery.data
   }
 
+  console.log('## ALBUMLIST INFO:: ', albums)
+
   const mappedData = albums?.map((a) => (
     <AlbumListItem
       key={a.id}

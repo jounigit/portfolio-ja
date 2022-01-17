@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
+import { colors } from '../../styles/theme'
 import { TABLET } from '../../styles/theme/breakpoints'
 
 interface IImageGridProps {
@@ -83,10 +84,16 @@ export const Info = styled.div`
     /* flex: 1; */
     flex: 0 0 45%;
     margin: 0 0 0.5em;
-    /* font-size: 0.2em; */
+    color: ${colors.grey3};
+    text-decoration: none;
+    :hover {
+      text-decoration: underline;
+    }
 `
-export const InfoText = styled.div`
+export const InfoText = styled.a`
     margin-top: 1em;
     margin-bottom: 1em;
     font-size: 0.9em;
+    color: black;
+    text-decoration: none;
 `

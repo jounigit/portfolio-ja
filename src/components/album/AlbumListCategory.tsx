@@ -6,7 +6,7 @@ import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbums } from './useAlbums'
 
 type Params = {
-    categoryID: string;
+    categorySlug: string;
   };
 
 const AlbumsCategoryContainer = styled(AlbumListContainer)`
@@ -14,7 +14,7 @@ const AlbumsCategoryContainer = styled(AlbumListContainer)`
 `
 
 export const AlbumListCategory = (): JSX.Element => {
-  const { categoryID } = useParams<Params>()
+  const { categorySlug } = useParams<Params>()
   const albumsQuery = useAlbums()
   let albums
 
@@ -22,7 +22,7 @@ export const AlbumListCategory = (): JSX.Element => {
     albums = albumsQuery.data
   }
 
-  const filtered = albums?.filter((a) => a.category === categoryID)
+  const filtered = albums?.filter((a) => a.category?.slug === categorySlug)
 
   console.log('## ALBUMS IN CAT::', filtered && filtered)
   const mappedData = filtered?.map((a) => (

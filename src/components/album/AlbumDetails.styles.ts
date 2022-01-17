@@ -9,7 +9,7 @@ interface IAlbumStyle {
 export const AlbumContainer = styled(BaseContainer)`
     flex-wrap: wrap;
     padding: 1em;
-    margin-top: 130px;
+    margin-top: 55px;
 `
 export const Title = styled.div`
     flex: 1 100%;
@@ -24,6 +24,9 @@ export const ImageBox = styled.div<IAlbumStyle>`
 
 @media ${TABLET} {
     flex: 0 0 55%;
+    ${(props) => props.full && ({
+    flex: '1 0 100%',
+  })}
 }
 
 @media ${DESKTOP} {

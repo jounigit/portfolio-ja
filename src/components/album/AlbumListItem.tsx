@@ -40,29 +40,28 @@ FC<AlbumListItemProps> = ({
   if (isPictureArray(albumPicsArr)) {
     threePics = albumPicsArr.slice(0, 2)
   }
-  // console.log('## ALBUMLIST INFO:: ', info)
+
   return (
     <AlbumListItemContainer>
-      {/* <Title>
-        <h2>{title}</h2>
-      </Title> */}
       <ImageBox>
         <ImageGridListItem width={200} height={200}>
           <DataDivNoClick data={threePics} />
         </ImageGridListItem>
       </ImageBox>
 
-      <Info>
-        <h2>{title}</h2>
+      <Link
+        style={{ textDecoration: 'none' }}
+        to={`/album/${slug}`}
+      >
 
-        <InfoText>
-          {info}
-        </InfoText>
-        <Link to={`/album/${slug}`}>
-          Linkki
-        </Link>
+        <Info>
+          <h3>{title}</h3>
+          <InfoText>
+            {info}
+          </InfoText>
+        </Info>
 
-      </Info>
+      </Link>
     </AlbumListItemContainer>
   )
 }

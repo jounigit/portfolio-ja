@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 // import { JsxElement } from 'typescript'
 import colors from '../../styles/theme/colors'
-import Dropdown from './dropdown'
+// import Dropdown from './dropdown'
 
 interface INav {
   open: boolean;
@@ -96,15 +96,20 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
     </li>
     <li>
       {navLinkTmp({
-        open, toggleOpen, text: 'About', link: '/about',
+        open, toggleOpen, text: 'Näyttelyt', link: '/nayttelyt',
+      })}
+    </li>
+    <li>
+      {navLinkTmp({
+        open, toggleOpen, text: 'Teokset', link: '/galleria',
       })}
     </li>
 
-    <li>
+    {/* <li>
       <LinkText>
         <Dropdown activatorText="Galleria" />
       </LinkText>
-    </li>
+    </li> */}
   </Ul>
 )
 

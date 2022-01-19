@@ -2,6 +2,7 @@ import React from 'react'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbums } from './useAlbums'
+import { isArray } from '../../types'
 
 export const AlbumsList = (): JSX.Element => {
   const albumsQuery = useAlbums()
@@ -11,7 +12,8 @@ export const AlbumsList = (): JSX.Element => {
     albums = albumsQuery.data
   }
 
-  console.log('## ALBUMLIST INFO:: ', albums)
+  // const sorted = isArray(albums)
+  // && albums.sort((a, b) => b.year - a.year)
 
   const mappedData = albums?.map((a) => (
     <AlbumListItem

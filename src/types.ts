@@ -64,6 +64,13 @@ export function isNotNull
   return value !== null
 }
 
+export function isArray<T>(value: T | undefined) : value is T {
+  if (!Array.isArray(value)) {
+    return false
+  }
+  return true
+}
+
 export function isPictureArray(value : unknown) : value is IPicture[] {
   if (!Array.isArray(value)) {
     return false

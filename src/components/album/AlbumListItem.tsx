@@ -26,6 +26,14 @@ FC<AlbumListItemProps> = ({
 }) => {
   const pictureData = usePictures()
   let threePics = new Array<IPicture>()
+  console.log('#Length:: ', pictures.length)
+  const textForGalleria = (
+    <h4>
+      {pictures.length}
+      {' '}
+      kuvaa
+    </h4>
+  )
 
   const albumPicsArr = getPicsByIds(pictures, pictureData)
 
@@ -49,7 +57,7 @@ FC<AlbumListItemProps> = ({
         <Info>
           <h3>{title}</h3>
           <InfoText>
-            {info}
+            {info || textForGalleria}
           </InfoText>
         </Info>
 

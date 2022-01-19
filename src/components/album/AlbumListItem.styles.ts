@@ -10,7 +10,7 @@ interface IImageGridProps {
 
 export const AlbumListItemContainer = styled(BaseContainer)`
     flex-wrap: wrap;
-    padding: 1em;
+    padding: 1.2rem;
 `
 export const Title = styled.div`
     flex: 1 100%;
@@ -22,7 +22,7 @@ export const ImageBox = styled.div`
 export const ImageGridListItem = styled.div<IImageGridProps>`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 15px;
+  /* padding: 15px; */
   grid-gap: .5rem;
 
   div {
@@ -44,10 +44,14 @@ export default styled.div`
     :hover {
       text-decoration: underline;
     }
+
+    h3 {
+      margin-bottom: 0.5rem;
+    }
 `
 export const InfoText = styled.a`
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 1.2rem;
+    margin-bottom: 1rem;
     font-size: 0.9em;
     color: black;
     text-decoration: none;

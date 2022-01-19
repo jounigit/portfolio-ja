@@ -52,7 +52,7 @@ const Navbar: FC = () => {
           </div>
         </div> */}
         <div className="name">
-          <h3>Jouni Airaksinen</h3>
+          JOUNI AIRAKSINEN
         </div>
       </NavbarContainer>
     </Transition>

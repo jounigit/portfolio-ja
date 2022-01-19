@@ -18,16 +18,6 @@ export const ItemAll = styled.div`
   flex-basis: 100%;
   margin: 1em;
   text-align: center;
-  /* border: 0.2em solid; */
-
-  h2 {
-    color: #68330c;
-  }
-
-  h4 {
-    font-size: 0.8rem;
-    color: #68330c;
-  }
 `
 
 export const Item = styled.div`

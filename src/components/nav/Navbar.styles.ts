@@ -19,8 +19,10 @@ export const NavbarContainer = styled.nav<IProps>`
 
   .name {
     padding-top: 0.5em;
-    color: ${colors.grey3};
+    color: ${colors.grey5};
     font-size: 1.2rem;
+    font-weight: 500;
+    z-index: 5;
   }
 
   @media ${TABLET} {

@@ -3,6 +3,7 @@ import {
   DESKTOP, LAPTOP, MOBILE, TABLET,
 } from './theme/breakpoints'
 import bgImage from '../assets/taustakuva-01.jpg'
+import { colors } from './theme'
 
 const GlobalStyles = createGlobalStyle`
 
@@ -44,17 +45,23 @@ const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-size: 2.75rem;
-    color: #686868;
+    color: ${colors.grey4};
   }
 
   h2 {
     font-size: 1.6rem;
-    color: #686868;
+    color: ${colors.grey4};
     /* font-size: clamp(1.75rem, 2vw, 2.7rem); */
   }
 
   h3 {
     font-size: 1.15rem;
+    color: ${colors.grey4};
+  }
+
+  h4 {
+    font-size: 1rem;
+    color: ${colors.grey4};
   }
 
   .photos {

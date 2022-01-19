@@ -4,10 +4,10 @@ import {
   Switch,
 } from 'react-router-dom'
 import { Album } from './components/album/Album'
-import { AlbumListCategory } from './components/album/AlbumListCategory'
 import { CategoryDetails } from './components/category/CategoryDetails'
 import Navbar from './components/nav/Navbar'
 import ArticlesPage from './pages/ArticlesPage'
+import AlbumsCategoryPage from './pages/AlbumsCategoryPage'
 import Home from './pages/Home'
 import GlobalStyles from './styles/GlobalStyles'
 import { SiteContent } from './styles/styles'
@@ -21,7 +21,7 @@ const App: React.FC = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/album/:slug" component={Album} />
         <Route path="/articles" component={ArticlesPage} />
-        <Route path="/:categorySlug" component={AlbumListCategory} />
+        <Route path="/:categorySlug" component={AlbumsCategoryPage} />
         <Route path="/category/:id" component={CategoryDetails} />
       </Switch>
     </SiteContent>

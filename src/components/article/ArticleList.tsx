@@ -13,7 +13,6 @@ export const ArticleList = (): JSX.Element => {
   }
 
   if (articleQuery.isSuccess) {
-    console.log('#art list::', articleQuery.data)
     articles = articleQuery.data
   }
 

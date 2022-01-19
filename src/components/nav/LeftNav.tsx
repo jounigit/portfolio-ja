@@ -49,7 +49,7 @@ const linkStyle = {
   margin: '1rem',
   textDecoration: 'none',
   color: colors.white,
-  fontSize: '1.4rem',
+  fontSize: '1.2rem',
 }
 
 const LinkText = styled.h2`

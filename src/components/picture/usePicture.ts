@@ -1,5 +1,5 @@
 import {
-  useQuery,
+  useQuery, UseQueryResult,
 } from 'react-query'
 import api from '../../clientProvider/axiosConfig'
 import { IPicture } from '../../types'
@@ -21,4 +21,8 @@ export function usePictures(): IPicture[] {
   }
   const dataE = new Array<IPicture>()
   return dataE
+}
+
+export function usePicturesQuery(): UseQueryResult<IPicture[], unknown> {
+  return useQuery('pictures', getPictures)
 }

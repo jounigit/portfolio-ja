@@ -1,10 +1,15 @@
 import React, { FC } from 'react'
 // import { Text } from '../atoms'
-import { StyledWelcome } from './Welcome.styles'
+import { ItemAll, StyledWelcome } from './Welcome.styles'
 
 export const Welcome: FC = () => (
 
   <StyledWelcome>
+    <ItemAll>
+      <h2>Jouni Airaksinen</h2>
+      <h4>Kuvataitelija </h4>
+      <h4>j.airaksinen@dnainternet.net</h4>
+    </ItemAll>
     {/* <Item>
       <Text muted>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.

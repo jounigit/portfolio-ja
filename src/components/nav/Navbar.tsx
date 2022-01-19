@@ -45,10 +45,15 @@ const Navbar: FC = () => {
         scrollPos={state.scrollPos}
         className={state.show ? 'active' : 'hidden'}
       >
-        {/* <div className="logo">
-        Nav Bar
-      </div> */}
         <Burger />
+        {/* <div className="logo">
+          <div className="name">
+            Kuvataitelija Jouni Airaksinen
+          </div>
+        </div> */}
+        <div className="name">
+          <h3>Jouni Airaksinen</h3>
+        </div>
       </NavbarContainer>
     </Transition>
   )

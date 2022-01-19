@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../styles/theme'
 import { TABLET } from '../../styles/theme/breakpoints'
 
 interface IProps {
@@ -11,7 +12,15 @@ export const NavbarContainer = styled.nav<IProps>`
     /* margin-bottom: 30px; */
   
   .logo {
-    padding: 15px 0;
+    /* padding: 15px 0; */
+    align-content: center;
+    border: 3px solid green;
+  }
+
+  .name {
+    padding-top: 0.5em;
+    color: ${colors.grey3};
+    font-size: 1.2rem;
   }
 
   @media ${TABLET} {

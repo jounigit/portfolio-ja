@@ -12,7 +12,7 @@ export const Image = styled.div`
     }
 `
 export const Message = styled.div`
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin-bottom: 10px;
     text-align: center;
 `

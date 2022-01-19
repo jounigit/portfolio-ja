@@ -32,13 +32,15 @@ export const Header = styled.div`
   border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
-  padding: 0.3rem;
+  padding: 0.5rem;
 `
 
 export const HeaderText = styled.div`
   color: #fff;
   align-self: center;
   color: #5c5858;
+  margin-top: 0.5rem;
+  margin-bottom: -0.5rem;
 `
 
 export const CloseButton = styled.button`

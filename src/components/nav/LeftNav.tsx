@@ -1,12 +1,10 @@
 import React, {
   FC,
-  // MouseEventHandler,
 } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-// import { JsxElement } from 'typescript'
+import { FaHome } from 'react-icons/fa'
 import colors from '../../styles/theme/colors'
-// import Dropdown from './dropdown'
 
 interface INav {
   open: boolean;
@@ -20,7 +18,6 @@ flex-flow: row nowrap;
   list-style: none;
   min-width: 200px;
   max-width: 400px;
-  /*flex-basis: auto;  default value */
   align-items: center;
 
   li {
@@ -54,18 +51,16 @@ const linkStyle = {
 
 const LinkText = styled.h2`
    font-size: 1.75rem;
-   /* color: ${colors.white}; */
 `
 
 type Props = {
   open: boolean;
   toggleOpen: React.Dispatch<React.SetStateAction<boolean>>
-  // toggleOpen: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface INavProps extends Props {
   link: string;
-  text: string;
+  text: string | JSX.Element;
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -91,7 +86,7 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
   <Ul open={open}>
     <li>
       {navLinkTmp({
-        open, toggleOpen, text: 'Home', link: '/',
+        open, toggleOpen, text: <FaHome size={25} />, link: '/',
       })}
     </li>
     <li>

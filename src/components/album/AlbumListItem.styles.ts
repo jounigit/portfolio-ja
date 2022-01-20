@@ -21,6 +21,8 @@ export const ImageBox = styled.div`
    
    @media ${TABLET} {
     flex: 0 0 45%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
    }
 `
 export const ImageGridListItem = styled.div<IImageGridProps>`

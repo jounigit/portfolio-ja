@@ -6,3 +6,6 @@ export const ArticleListContainer = styled(BaseContainer)`
     padding: 1em;
     margin-top: 150px;
 `
+export const Title = styled.div`
+    flex: 1 100%;
+`

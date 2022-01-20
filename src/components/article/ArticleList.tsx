@@ -1,6 +1,6 @@
 import React from 'react'
 import { AlbumListContainer } from '../album/AlbumList.styles'
-import { ArticleListContainer } from './ArticleList.styles'
+import { ArticleListContainer, Title } from './ArticleList.styles'
 import { ArticleListItem } from './ArticleListItem'
 import { useArticles } from './useArticles'
 
@@ -29,7 +29,10 @@ export const ArticleList = (): JSX.Element => {
   return (
     <AlbumListContainer>
       <ArticleListContainer>
-        <h3>Artikkelit</h3>
+        <Title>
+          <h3>Artikkelit</h3>
+        </Title>
+
         {mappedData && mappedData}
       </ArticleListContainer>
     </AlbumListContainer>

@@ -2,7 +2,6 @@ import React from 'react'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbums } from './useAlbums'
-import { isArray } from '../../types'
 
 export const AlbumsList = (): JSX.Element => {
   const albumsQuery = useAlbums()

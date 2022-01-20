@@ -7,9 +7,9 @@ export const AlbumListContainer = styled(SiteContent)`
   grid-template-rows: 1fr;
   gap: 0.6em;
   margin: auto;
-  padding: 1em;
 
   @media ${TABLET} {
     max-width: 70%;
+    padding: 1em;
   }
 `

@@ -5,13 +5,14 @@ import { TABLET } from '../../styles/theme/breakpoints'
 export const StyledWelcome = styled(BaseContainer)`
     /* flex-direction: column; */
     margin: auto;
-    margin-top: 120px;
+    margin-top: 40px;
     padding: 1em;
+    margin-bottom: 1em;
 
   @media ${TABLET} {
     /* flex-direction: row; */
     max-width: 70%;
-    margin-bottom: 1em;
+    margin-top: 120px;
   }
 `
 export const ItemAll = styled.div`

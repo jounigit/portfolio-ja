@@ -7,9 +7,12 @@ interface IProps {
 }
 
 export const NavbarContainer = styled.nav<IProps>`
-    background: none;
-    box-shadow: none;
+    /* background: none;
+    box-shadow: none; */
     /* margin-bottom: 30px; */
+    height: 4rem;
+    background: rgba(203,198,198,${(p) => (p.scrollPos === 0 ? 0.5 : 1)});
+    box-shadow: var(--shadow-primary);
   
   .logo {
     /* padding: 15px 0; */
@@ -18,11 +21,11 @@ export const NavbarContainer = styled.nav<IProps>`
   }
 
   .name {
-    padding-top: 0.5em;
+    padding: 0.8em 0.5em 0;
+    float: right;
     color: ${colors.grey5};
     font-size: 1.2rem;
     font-weight: 500;
-    z-index: 5;
   }
 
   @media ${TABLET} {

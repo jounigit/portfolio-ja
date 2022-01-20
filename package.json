@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://jouniairaksinen.net/test",
+  "homepage": "https://jouniairaksinen.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

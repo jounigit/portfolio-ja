@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     background-attachment: fixed;
   
     background-size: cover;
-    font-family: "Titillium Web", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: "Nunito", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       -webkit-font-smoothing: antialiased;
 
   }

@@ -32,7 +32,7 @@ export interface ICategory extends BaseModel {
 }
 
 export interface IAlbum extends BaseModel {
-    year?: number;
+    year: number;
     info?: string;
     category?: ICategory;
     pictures: Array<string>;
@@ -69,6 +69,24 @@ export function isArray<T>(value: T | undefined) : value is T {
     return false
   }
   return true
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+function hasOwnProperty<X extends {}, Y extends PropertyKey>(obj: X, prop: Y)
+: obj is X & Record<Y, unknown> {
+  // eslint-disable-next-line no-prototype-builtins
+  return obj.hasOwnProperty(prop)
+}
+
+export function hasArrOfObjWithProperty<A extends unknown[]>(value: A)
+: value is A {
+  if (
+    value.some((v) => (
+      v !== null && typeof v === 'object' && hasOwnProperty(v, 'year')))
+  ) {
+    return true
+  }
+  return false
 }
 
 export function isPictureArray(value : unknown) : value is IPicture[] {

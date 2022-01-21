@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbums } from './useAlbums'
+import { hasArrOfObjWithProperty, isArray } from '../../types'
 
 type Params = {
     categorySlug: string;
@@ -22,9 +23,12 @@ export const AlbumListCategory = (): JSX.Element => {
     albums = albumsQuery.data
   }
 
-  const filtered = albums?.filter((a) => a.category?.slug === categorySlug)
+  let filtered = albums?.filter((a) => a.category?.slug === categorySlug)
 
-  console.log('## ALBUMS IN CAT::', filtered && filtered)
+  if (isArray(filtered) && hasArrOfObjWithProperty(filtered)) {
+    filtered = filtered.sort((a, b) => b.year - a.year)
+  }
+
   const mappedData = filtered?.map((a) => (
     <AlbumListItem
       key={a.id}
@@ -33,8 +37,6 @@ export const AlbumListCategory = (): JSX.Element => {
       slug={a.slug}
       info={a.info}
       pictures={a.pictures}
-      // width={100}
-      // height={100}
     />
   ))
 

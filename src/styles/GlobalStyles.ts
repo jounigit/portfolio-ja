@@ -12,6 +12,8 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: 0;
+    font-family: Nunito, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      -webkit-font-smoothing: antialiased;
     /* font-size: 16px; */
     font-size: clamp(16px, 2vw, 20px);
     /* vars */
@@ -26,12 +28,8 @@ const GlobalStyles = createGlobalStyle`
     background-image: url(${bgImage});
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-  
+    background-attachment: fixed;  
     background-size: cover;
-    font-family: "Nunito", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      -webkit-font-smoothing: antialiased;
-
   }
 
   html, body, #root {

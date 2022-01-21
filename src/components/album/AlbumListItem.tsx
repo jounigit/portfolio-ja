@@ -3,10 +3,11 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { usePictures } from '../picture/usePicture'
 import { IPicture, isPictureArray } from '../../types'
-import Info, {
+import {
   AlbumListItemContainer,
   ImageBox,
   ImageGridListItem,
+  Info,
   InfoText,
 } from './AlbumListItem.styles'
 import { getPicsByIds } from '../picture/sharePictures'
@@ -43,25 +44,30 @@ FC<AlbumListItemProps> = ({
 
   return (
     <AlbumListItemContainer>
-      <ImageBox>
-        <ImageGridListItem width={200} height={200}>
-          <DataDivNoClick data={threePics} />
-        </ImageGridListItem>
-      </ImageBox>
+      <Link
+        style={{ textDecoration: 'none' }}
+        to={`/album/${slug}`}
+      >
+        <ImageBox>
+          <ImageGridListItem width={200} height={200}>
+            <DataDivNoClick data={threePics} />
+          </ImageGridListItem>
+        </ImageBox>
+
+      </Link>
 
       <Link
         style={{ textDecoration: 'none' }}
         to={`/album/${slug}`}
       >
-
         <Info>
           <h3>{title}</h3>
           <InfoText>
             {info || textForGalleria}
           </InfoText>
         </Info>
-
       </Link>
+
     </AlbumListItemContainer>
   )
 }

@@ -51,15 +51,15 @@ export const ImageGridListItem = styled.div<IImageGridProps>`
     }
   }
 `
-export default styled.div`
+export const Info = styled.div`
     /* flex: 1; */
     flex: 0 0 45%;
     margin: 0 0 0.5em;
     color: ${colors.grey3};
     text-decoration: none;
-    :hover {
+    /* :hover {
       text-decoration: underline;
-    }
+    } */
 
     h3 {
       margin-bottom: 0.5rem;

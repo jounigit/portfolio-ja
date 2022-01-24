@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export enum IRole {
     Editor = 'editor',
     Admin = 'admin'
@@ -25,6 +26,10 @@ export interface IArticle extends BaseModel {
   year?: number;
   journalist: string;
   file: string;
+}
+
+export interface ICv extends BaseModel {
+  content: string;
 }
 
 export interface ICategory extends BaseModel {
@@ -71,8 +76,8 @@ export function isArray<T>(value: T | undefined) : value is T {
   return true
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-function hasOwnProperty<X extends {}, Y extends PropertyKey>(obj: X, prop: Y)
+export function
+hasOwnProperty<X extends {}, Y extends PropertyKey>(obj: X, prop: Y)
 : obj is X & Record<Y, unknown> {
   // eslint-disable-next-line no-prototype-builtins
   return obj.hasOwnProperty(prop)

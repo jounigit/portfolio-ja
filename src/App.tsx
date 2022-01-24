@@ -11,6 +11,7 @@ import AlbumsCategoryPage from './pages/AlbumsCategoryPage'
 import Home from './pages/Home'
 import GlobalStyles from './styles/GlobalStyles'
 import { SiteContent } from './styles/styles'
+import { Cv } from './components/cv/Cv'
 
 const App: React.FC = () => (
   <>
@@ -19,6 +20,7 @@ const App: React.FC = () => (
     <SiteContent>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/cv" component={Cv} />
         <Route exact path="/album/:slug" component={Album} />
         <Route path="/articles" component={ArticlesPage} />
         <Route path="/:categorySlug" component={AlbumsCategoryPage} />

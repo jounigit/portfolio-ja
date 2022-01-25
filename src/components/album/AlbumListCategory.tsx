@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
-import { useAlbums } from './useAlbums'
+import { useAlbumsByCategory } from './useAlbums'
 import { hasArrOfObjWithProperty, isArray } from '../../types'
 
 type Params = {
@@ -16,14 +16,11 @@ const AlbumsCategoryContainer = styled(AlbumListContainer)`
 
 export const AlbumListCategory = (): JSX.Element => {
   const { categorySlug } = useParams<Params>()
-  const albumsQuery = useAlbums()
-  let albums
+  const { isLoading, albumsByCategory } = useAlbumsByCategory(categorySlug)
 
-  if (albumsQuery.isSuccess) {
-    albums = albumsQuery.data
-  }
+  if (isLoading) return <h3>Loading ...</h3>
 
-  let filtered = albums?.filter((a) => a.category?.slug === categorySlug)
+  let filtered = albumsByCategory
 
   if (isArray(filtered) && hasArrOfObjWithProperty(filtered)) {
     filtered = filtered.sort((a, b) => b.year - a.year)

@@ -33,12 +33,6 @@ export function useCategoriesData(): ICategory[] {
 // && 'slug' in category && 'content' in category
 // }
 
-// async function getData(path: string): Promise<unknown> {
-//   const response = await fetch(path)
-//   // eslint-disable-next-line no-return-await
-//   return await response.json()
-// }
-
 // export const getCategory = async (id: string): Promise<ICategory | null> => {
 //   const category =
 // await getData(`http://localhost:8000/api/categories/${id}`)

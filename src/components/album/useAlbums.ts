@@ -16,6 +16,8 @@ export const getAlbum = async (id: string | undefined): Promise<IAlbum> => {
   return data
 }
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 export function useAlbums(): UseQueryResult<IAlbum[], unknown> {
   return useQuery('albums', getAlbums)
 }
@@ -39,6 +41,32 @@ export function useAlbumsData(): IAlbum[] {
   }
   const emptyData = new Array<IAlbum>()
   return emptyData
+}
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+export const useAlbumsByCategory = (slug: string): {
+  isLoading: boolean;
+  albumsByCategory: IAlbum[] | undefined;
+} => {
+  const {
+    isLoading, isError, isSuccess, data,
+  } = useAlbums()
+
+  let albumsByCategory
+
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
+
+  if (isSuccess && data !== undefined) {
+    albumsByCategory = data
+      .filter((a) => (a.category?.slug === slug))
+  }
+
+  return {
+    isLoading,
+    albumsByCategory,
+  }
 }
 
 // const fetchAlbum = async (id: string): Promise<unknown> => {

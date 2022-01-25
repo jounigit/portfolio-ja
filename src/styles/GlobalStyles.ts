@@ -41,6 +41,14 @@ const GlobalStyles = createGlobalStyle`
     flex-direction: column;
   }
 
+  .headerMiddle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: ${colors.white};
+    text-align: center;
+    padding: 1.2em 0 0.8em;
+  }
+
   h1 {
     font-size: 2.75rem;
     color: ${colors.grey4};
@@ -118,12 +126,3 @@ const GlobalStyles = createGlobalStyle`
 `
 
 export default GlobalStyles
-
-// font-family: "Titillium Web", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-// height: 100vh;
-// width: 50vw;
-// margin: 0 auto;
-// background-color: white;
-// display: flex;
-// justify-content: center;
-// align-items: center;

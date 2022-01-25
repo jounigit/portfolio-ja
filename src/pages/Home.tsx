@@ -1,5 +1,6 @@
 import React from 'react'
-import { AlbumsList } from '../components/album/AlbumList'
+// import { AlbumsList } from '../components/album/AlbumList'
+import { AlbumListHome } from '../components/album/AlbumListHome'
 import { useAlbums } from '../components/album/useAlbums'
 import { usePicturesQuery } from '../components/picture/usePicture'
 import { Welcome } from '../components/welcome/Welcome'
@@ -19,9 +20,19 @@ const Home: React.FC = () => {
       {
       isLoaded
       && (
-      <FadeDiv timein="0.3s">
-        <AlbumsList />
-      </FadeDiv>
+      <>
+        <FadeDiv timein="0.3s">
+          <AlbumListHome category="galleria" columns={2} />
+        </FadeDiv>
+        <FadeDiv timein="0.3s">
+          <div className="headerMiddle">
+            NÄYTTELYT
+          </div>
+          <AlbumListHome category="nayttelyt" columns={3} />
+          {/* <AlbumsList /> */}
+        </FadeDiv>
+
+      </>
       )
       }
     </>

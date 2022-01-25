@@ -1,25 +1,25 @@
 import React from 'react'
 import Spacer from 'react-spacer'
-import { ArticleList } from '../components/article/ArticleList'
-import { useArticles } from '../components/article/useArticles'
+import { Cv } from '../components/cv/Cv'
+import { useCv } from '../components/cv/useCv'
 import { FadeDiv } from './FadeIn.styles'
 
-const ArticlesPage: React.FC = () => {
-  const articlesQuery = useArticles()
+const CvPage: React.FC = () => {
+  const cvQuery = useCv()
 
-  const isLoaded = articlesQuery.isSuccess
+  const isLoaded = cvQuery.isSuccess
 
   return (
     <>
       <Spacer height={80} />
       <div className="headerMiddle">
-        ARTIKKELIT
+        CV
       </div>
       {
             isLoaded
             && (
             <FadeDiv timein="0.3s">
-              <ArticleList />
+              <Cv />
             </FadeDiv>
             )
         }
@@ -27,4 +27,4 @@ const ArticlesPage: React.FC = () => {
   )
 }
 
-export default ArticlesPage
+export default CvPage

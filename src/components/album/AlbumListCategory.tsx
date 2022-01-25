@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbumsByCategory } from './useAlbums'
@@ -9,10 +8,6 @@ import { hasArrOfObjWithProperty, isArray } from '../../types'
 type Params = {
     categorySlug: string;
   };
-
-const AlbumsCategoryContainer = styled(AlbumListContainer)`
-    margin-top: 130px;
-`
 
 export const AlbumListCategory = (): JSX.Element => {
   const { categorySlug } = useParams<Params>()
@@ -38,8 +33,8 @@ export const AlbumListCategory = (): JSX.Element => {
   ))
 
   return (
-    <AlbumsCategoryContainer>
+    <AlbumListContainer>
       { mappedData && mappedData }
-    </AlbumsCategoryContainer>
+    </AlbumListContainer>
   )
 }

@@ -12,7 +12,7 @@ export const getAlbum = async (id: string | undefined): Promise<IAlbum> => {
     Promise.reject(new Error('Invalid id'))
   }
   const { data } = await api.get(`/albums/${id}`)
-  console.log('# use Album: ', data)
+  // console.log('# use Album: ', data)
   return data
 }
 

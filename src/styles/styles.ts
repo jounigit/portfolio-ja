@@ -19,3 +19,12 @@ export const BaseContainer = styled.div`
   border-radius: 5px;
   background: var(--bg-primary);
 `
+interface SpinnerProps {
+    marginTop?: number;
+}
+export const Spinner = styled(SiteContent)<SpinnerProps>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: ${({ marginTop }) => marginTop ?? 0}px;
+`

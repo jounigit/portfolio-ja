@@ -1,6 +1,4 @@
 import React, { FC } from 'react'
-// import { AlbumListItem } from './AlbumListItem'
-// import { AlbumListContainer } from './AlbumList.styles'
 import { useAlbumsByCategory } from './useAlbums'
 import { AlbumListHomeItem } from './AlbumListHomeItem'
 import { AlbumHomePageContainer } from './AlbumHomePage.styles'

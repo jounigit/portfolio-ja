@@ -6,7 +6,6 @@ export const CvContainer = styled(BaseContainer)`
     flex-wrap: wrap;
     padding: 1em;
     margin: auto;
-    margin-top: 150px;
 
     @media ${TABLET} {
         max-width: 70%;

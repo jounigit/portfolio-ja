@@ -33,7 +33,6 @@ FC<AlbumListItemProps> = ({
   const firstPic = pictureData.find((p) => p.id === pictures[0])
 
   const showPic = firstPic?.thumb || bgImage
-  // console.log('#  First picture:: ', showPic)
 
   return (
     <AlbumListHomeItemContainer>

@@ -1,20 +1,16 @@
-/* eslint-disable max-len */
 import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
 import { DESKTOP, TABLET } from '../../styles/theme/breakpoints'
-// import { AlbumListItemContainer } from './AlbumListItem.styles'
-// import { SiteContent } from '../../styles/styles'
 
 interface Props {
     columns: number;
 }
 
-export const AlbumHomePageContainer = styled.div<Props>`
+// 1# for separated items - set: styled.div
+export const AlbumHomePageContainer = styled(BaseContainer)<Props>`
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
-    /* width: 70%;
-    margin: auto; */
 
     @media ${TABLET} {
         display: grid;
@@ -27,12 +23,13 @@ export const AlbumHomePageContainer = styled.div<Props>`
     @media ${DESKTOP} {
         display: grid;
         grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
-        grid-gap: 0.1em;
+        grid-gap: 0em;
         width: 80%;
     }
 `
 
-export const AlbumListHomeItemContainer = styled(BaseContainer)`
+// 1# for separated items - set: styled(BaseContainer)
+export const AlbumListHomeItemContainer = styled.div`
     padding: 1.2rem;
 
     @media ${TABLET} {

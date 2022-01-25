@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
 import { colors } from '../../styles/theme'
 import { TABLET } from '../../styles/theme/breakpoints'
-// import { TABLET } from '../../styles/theme/breakpoints'
 
 interface IImageGridProps {
     width: number,
@@ -35,9 +34,8 @@ export const ImageGridListItem = styled.div<IImageGridProps>`
 
   @media ${TABLET} {
     display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* padding: 15px; */
-  grid-gap: .5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem;
 
   div {
     height: ${({ height }) => height}px;
@@ -52,20 +50,16 @@ export const ImageGridListItem = styled.div<IImageGridProps>`
   }
 `
 export const Info = styled.div`
-    /* flex: 1; */
     flex: 0 0 45%;
     margin: 0 0 0.5em;
     color: ${colors.grey3};
     text-decoration: none;
-    /* :hover {
-      text-decoration: underline;
-    } */
 
     h3 {
       margin-bottom: 0.5rem;
     }
 `
-export const InfoText = styled.a`
+export const InfoText = styled.span`
     margin-top: 1.2rem;
     margin-bottom: 1rem;
     font-size: 0.9em;

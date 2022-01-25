@@ -21,9 +21,9 @@ const App: React.FC = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/cv" component={CvPage} />
-        <Route exact path="/album/:slug" component={Album} />
         <Route path="/articles" component={ArticlesPage} />
-        <Route path="/:categorySlug" component={AlbumsCategoryPage} />
+        <Route exact path="/:categorySlug" component={AlbumsCategoryPage} />
+        <Route exact path="/album/:slug" component={Album} />
         <Route path="/category/:id" component={CategoryDetails} />
       </Switch>
     </SiteContent>

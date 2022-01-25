@@ -27,7 +27,7 @@ FC<AlbumListItemProps> = ({
 }) => {
   const pictureData = usePictures()
   let threePics = new Array<IPicture>()
-  // console.log('#Length:: ', pictures.length)
+
   const textForGalleria = (
     <h4>
       {pictures.length}

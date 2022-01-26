@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
 import { DESKTOP, TABLET } from '../../styles/theme/breakpoints'
@@ -30,24 +31,28 @@ export const AlbumHomePageContainer = styled(BaseContainer)<Props>`
 
 // 1# for separated items - set: styled(BaseContainer)
 export const AlbumListHomeItemContainer = styled.div`
-    padding: 1.2rem;
+    /* padding: 1rem; !!!! uncomment if separating is wanted */
 
     @media ${TABLET} {
-        padding: 1rem;
+        /* padding: 1rem; */
+    /* border: 1px solid red; */
     }
 `
 
 export const BackgroundImage = styled.div<{image: string;}>`
     width: 100%;
     height: 20em;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${({ image }) => image});
+    background-image: url(${({ image }) => image});
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(${({ image }) => image}); */
     background-size: cover;
 `
 
 export const TextWrapper = styled.div`
     width: 100%;
     height: 100%;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;

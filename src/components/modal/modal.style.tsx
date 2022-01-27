@@ -16,7 +16,7 @@ export const Backdrop = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 500;
 `
 
@@ -55,7 +55,7 @@ export const CloseButton = styled.button`
 `
 
 export const Content = styled.div`
-   padding: 10px;
+   padding: 5px 2rem 5px 2rem;
     /* border: 1px solid red; */
    max-height: 100%;
    overflow-x: hidden;

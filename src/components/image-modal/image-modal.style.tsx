@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Image = styled.div`
-    height: 80vh;
+    height: 90vh;
     width: auto;
     /* border: 1px solid green; */
 

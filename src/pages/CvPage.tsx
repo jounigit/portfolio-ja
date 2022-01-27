@@ -1,7 +1,7 @@
 import React from 'react'
 import Spacer from 'react-spacer'
 import { Cv } from '../components/cv/Cv'
-import { useCv } from '../components/cv/useCv'
+import { useCv } from '../hooks/useCv'
 import { FadeDiv } from './FadeIn.styles'
 
 const CvPage: React.FC = () => {

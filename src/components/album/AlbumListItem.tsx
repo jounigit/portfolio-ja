@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { usePictures } from '../picture/usePicture'
+import { usePictures } from '../../hooks/usePicture'
 import { IPicture, isPictureArray } from '../../types'
 import {
   AlbumListItemContainer,

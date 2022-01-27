@@ -6,9 +6,9 @@ import {
   isPictureArray,
 } from '../../types'
 import { getPicsByIds } from '../picture/sharePictures'
-import { usePictures } from '../picture/usePicture'
+import { usePictures } from '../../hooks/usePicture'
 import { AlbumDetails } from './AlbumDetails'
-import { useAlbumsData } from './useAlbums'
+import { useAlbumsData } from '../../hooks/useAlbums'
 
 type AlbumParams = {
   slug: string;

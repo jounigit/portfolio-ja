@@ -1,7 +1,6 @@
-/* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { usePictures } from '../picture/usePicture'
+import { usePictures } from '../../hooks/usePicture'
 import {
   AlbumListHomeItemContainer,
   BackgroundImage,
@@ -22,13 +21,6 @@ FC<AlbumListItemProps> = ({
   title, slug, info, pictures,
 }) => {
   const pictureData = usePictures()
-  const textForGalleria = (
-    <h4>
-      {pictures.length}
-      {' '}
-      kuvaa
-    </h4>
-  )
 
   const firstPic = pictureData.find((p) => p.id === pictures[0])
 
@@ -45,7 +37,7 @@ FC<AlbumListItemProps> = ({
           <TextWrapper>
             <h2>{title}</h2>
 
-            {info || textForGalleria}
+            {info}
 
           </TextWrapper>
         </Link>

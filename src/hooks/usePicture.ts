@@ -1,8 +1,8 @@
 import {
   useQuery, UseQueryResult,
 } from 'react-query'
-import api from '../../clientProvider/axiosConfig'
-import { IPicture } from '../../types'
+import api from '../config/axiosConfig'
+import { IPicture } from '../types'
 
 const getPictures = async (): Promise<IPicture[]> => {
   const { data } = await api.get('/pictures')

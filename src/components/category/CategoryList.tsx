@@ -1,8 +1,7 @@
-/* eslint-disable no-var */
 /* eslint-disable vars-on-top */
 import React from 'react'
 import { CategoryListItem } from './CategoryListItem'
-import { useCategories } from './useCategories'
+import { useCategories } from '../../hooks/useCategories'
 
 export const CategoryList = (): JSX.Element => {
   const categories = useCategories()

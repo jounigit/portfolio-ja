@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import api from '../../clientProvider/axiosConfig'
-import { IArticle } from '../../types'
+import api from '../config/axiosConfig'
+import { IArticle } from '../types'
 
 const getArticles = async (): Promise<IArticle[]> => {
   const { data } = await api.get('/articles')

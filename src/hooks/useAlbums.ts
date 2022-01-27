@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import api from '../../clientProvider/axiosConfig'
-import { IAlbum } from '../../types'
+import api from '../config/axiosConfig'
+import { IAlbum } from '../types'
 
 const getAlbums = async (): Promise<IAlbum[]> => {
   const { data } = await api.get('/albums')
@@ -19,7 +19,7 @@ export const getAlbum = async (id: string | undefined): Promise<IAlbum> => {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 export function useAlbums(): UseQueryResult<IAlbum[], unknown> {
-  return useQuery('albums', getAlbums)
+  return useQuery(['albums'], getAlbums)
 }
 
 export function useAlbum(id: string | undefined)
@@ -68,18 +68,3 @@ export const useAlbumsByCategory = (slug: string): {
     albumsByCategory,
   }
 }
-
-// const fetchAlbum = async (id: string): Promise<unknown> => {
-//   const response = await fetch(`http://localhost:3001/albums/${id}`)
-
-//   if (!response.ok) {
-//     throw new Error(response.statusText)
-//   }
-
-//   return response.json()
-// }
-
-// // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// export function useAlbumFetch(id: string) {
-//   return useQuery(['album', { id }], () => fetchAlbum(id))
-// }

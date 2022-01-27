@@ -2,7 +2,7 @@ import React from 'react'
 import { AlbumListContainer } from '../album/AlbumList.styles'
 import { ArticleListContainer, Title } from './ArticleList.styles'
 import { ArticleListItem } from './ArticleListItem'
-import { useArticles } from './useArticles'
+import { useArticles } from '../../hooks/useArticles'
 
 export const ArticleList = (): JSX.Element => {
   const articleQuery = useArticles()

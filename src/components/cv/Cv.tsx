@@ -4,7 +4,7 @@ import {
   isArray,
 } from '../../types'
 import { CvDetails } from './CvDetails'
-import { useCv } from './useCv'
+import { useCv } from '../../hooks/useCv'
 
 export const Cv: FC = () => {
   const cvQuery = useCv()

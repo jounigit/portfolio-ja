@@ -1,10 +1,9 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import api from '../../clientProvider/axiosConfig'
-import { ICategory } from '../../types'
+import api from '../config/axiosConfig'
+import { ICategory } from '../types'
 
 const getCategories = async (): Promise<ICategory[]> => {
   const { data } = await api.get('/categories')
-  // console.log('# use CATEGORIES 1: ', data)
   return data
 }
 

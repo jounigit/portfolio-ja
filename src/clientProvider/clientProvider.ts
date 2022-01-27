@@ -1,5 +1,5 @@
 import { QueryClient } from 'react-query'
-import axios from './axiosConfig'
+import axios from '../config/axiosConfig'
 
 const queryClient = new QueryClient()
 // All defualt query API goes here

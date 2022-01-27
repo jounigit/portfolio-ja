@@ -2,24 +2,18 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
-import { useAlbumsByCategory } from './useAlbums'
-import { hasArrOfObjWithProperty, isArray } from '../../types'
-
-type Params = {
-    categorySlug: string;
-  };
+import { useAlbumsByCategory } from '../../hooks/useAlbums'
+import { filterAlbums } from './filterAlbums'
 
 export const AlbumListCategory = (): JSX.Element => {
-  const { categorySlug } = useParams<Params>()
+  const { categorySlug } = useParams<{ categorySlug: string }>()
   const { isLoading, albumsByCategory } = useAlbumsByCategory(categorySlug)
 
   if (isLoading) return <h3>Loading ...</h3>
 
-  let filtered = albumsByCategory
+  if (albumsByCategory === undefined) return <div>No albums found.</div>
 
-  if (isArray(filtered) && hasArrOfObjWithProperty(filtered)) {
-    filtered = filtered.sort((a, b) => b.year - a.year)
-  }
+  const filtered = filterAlbums(albumsByCategory)
 
   const mappedData = filtered?.map((a) => (
     <AlbumListItem

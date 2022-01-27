@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
-import { useAlbumsByCategory } from './useAlbums'
+import { useAlbumsByCategory } from '../../hooks/useAlbums'
 import { AlbumListHomeItem } from './AlbumListHomeItem'
 import { AlbumHomePageContainer } from './AlbumHomePage.styles'
+import { filterAlbums } from './filterAlbums'
 
 interface Props {
   category: string,
@@ -17,7 +18,9 @@ export const AlbumListHome: FC<Props> = (
 
   if (albumsByCategory === undefined) return <h3>No albums ...</h3>
 
-  const mappedData = albumsByCategory.slice(0, 6).map((a) => (
+  const orderByYear = filterAlbums(albumsByCategory)
+
+  const mappedData = orderByYear.slice(0, 6).map((a) => (
     <AlbumListHomeItem
       key={a.id}
       title={a.title}

@@ -8,6 +8,7 @@ export const Welcome: FC = () => (
     <ItemAll>
       <h2>Jouni Airaksinen</h2>
       <h4>Kuvataitelija </h4>
+      <h4>+358 44 2704033</h4>
       <h4>j.airaksinen@dnainternet.net</h4>
     </ItemAll>
     {/* <Item>

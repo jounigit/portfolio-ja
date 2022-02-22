@@ -49,7 +49,7 @@ export interface IAlbumDetails extends BaseModel {
 }
 
 export interface IPicture extends BaseModel {
-    year?: number;
+    year: number;
     image: string;
     thumb: string;
     landscape: string;

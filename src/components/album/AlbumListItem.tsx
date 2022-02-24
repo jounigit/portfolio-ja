@@ -46,7 +46,7 @@ FC<AlbumListItemProps> = ({
     <AlbumListItemContainer>
       <Link
         style={{ textDecoration: 'none' }}
-        to={`/album/${slug}`}
+        to={`/galleria/${slug}`}
       >
         <ImageBox>
           <ImageGridListItem width={200} height={200}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import Spacer from 'react-spacer'
 import { ArticleList } from '../components/article/ArticleList'
 import { useArticles } from '../hooks/useArticles'
@@ -11,6 +12,13 @@ const ArticlesPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Jouni Airaksinen - articles</title>
+        <meta
+          name="artikkelit"
+          content="articles and critics of artworks"
+        />
+      </Helmet>
       <Spacer height={80} />
       <div className="headerMiddle">
         ARTIKKELIT

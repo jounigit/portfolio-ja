@@ -32,7 +32,7 @@ FC<AlbumListItemProps> = ({
       <BackgroundImage image={showPic}>
         <Link
           style={{ width: '100%', textDecoration: 'none' }}
-          to={`/album/${slug}`}
+          to={`/galleria/${slug}`}
         >
           <TextWrapper>
             <h2>{title}</h2>

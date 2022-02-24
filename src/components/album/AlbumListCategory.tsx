@@ -1,19 +1,17 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { FC } from 'react'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
-import { useAlbumsByCategory } from '../../hooks/useAlbums'
 import { filterAlbums } from './filterAlbums'
+import { IAlbum } from '../../types'
 
-export const AlbumListCategory = (): JSX.Element => {
-  const { categorySlug } = useParams<{ categorySlug: string }>()
-  const { isLoading, albumsByCategory } = useAlbumsByCategory(categorySlug)
+interface Props {
+  albumsByCategory: IAlbum[]
+}
 
-  if (isLoading) return <h3>Loading ...</h3>
-
-  if (albumsByCategory === undefined) return <div>No albums found.</div>
-
-  const filtered = filterAlbums(albumsByCategory)
+export const AlbumListCategory: FC<Props> = ({ albumsByCategory })
+: JSX.Element => {
+  console.log('## Albums: ', albumsByCategory && albumsByCategory)
+  const filtered = filterAlbums(albumsByCategory && albumsByCategory)
 
   const mappedData = filtered?.map((a) => (
     <AlbumListItem

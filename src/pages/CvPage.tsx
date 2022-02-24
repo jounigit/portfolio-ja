@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import Spacer from 'react-spacer'
 import { Cv } from '../components/cv/Cv'
 import { useCv } from '../hooks/useCv'
@@ -11,6 +12,13 @@ const CvPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Jouni Airaksinen - visual artist</title>
+        <meta
+          name="artworks of jouni airaksinen"
+          content="Sculptors, drawings"
+        />
+      </Helmet>
       <Spacer height={80} />
       <div className="headerMiddle">
         CV

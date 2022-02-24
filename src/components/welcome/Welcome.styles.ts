@@ -8,6 +8,7 @@ export const StyledWelcome = styled(BaseContainer)`
     margin-top: 40px;
     padding: 1em;
     margin-bottom: 1em;
+    background: var(--bg-secondary);
 
   @media ${TABLET} {
     /* flex-direction: row; */

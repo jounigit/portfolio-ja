@@ -91,12 +91,12 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
     </li>
     <li>
       {navLinkTmp({
-        open, toggleOpen, text: 'Näyttelyt', link: '/nayttelyt',
+        open, toggleOpen, text: 'Galleria', link: '/galleria',
       })}
     </li>
     <li>
       {navLinkTmp({
-        open, toggleOpen, text: 'Teokset', link: '/galleria',
+        open, toggleOpen, text: 'Näyttelyt', link: '/nayttelyt',
       })}
     </li>
     <li>

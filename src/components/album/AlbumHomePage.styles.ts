@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import styled from 'styled-components'
 import { BaseContainer } from '../../styles/styles'
+import { colors } from '../../styles/theme'
 import { DESKTOP, TABLET } from '../../styles/theme/breakpoints'
 
 interface Props {
@@ -43,8 +44,6 @@ export const BackgroundImage = styled.div<{image: string;}>`
     width: 100%;
     height: 20em;
     background-image: url(${({ image }) => image});
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${({ image }) => image}); */
     background-size: cover;
 `
 
@@ -57,9 +56,9 @@ export const TextWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: ${colors.grey2};
     /* border: 1px solid red; */
     h2, h3, h4 {
-        color: white;
+        color: ${colors.grey2};
     }
 `

@@ -23,7 +23,7 @@ const App: React.FC = () => (
         <Route exact path="/cv" component={CvPage} />
         <Route path="/articles" component={ArticlesPage} />
         <Route exact path="/:categorySlug" component={AlbumsCategoryPage} />
-        <Route exact path="/album/:slug" component={Album} />
+        <Route exact path="/galleria/:slug" component={Album} />
         <Route path="/category/:id" component={CategoryDetails} />
       </Switch>
     </SiteContent>

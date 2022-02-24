@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: clamp(16px, 2vw, 20px);
     /* vars */
     --bg-primary: rgb(255,255,255,0.7);
+    --bg-secondary: rgb(255,255,255,0.6);
     --shadow-primary: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 

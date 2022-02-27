@@ -13,10 +13,10 @@ const CvPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Jouni Airaksinen - visual artist</title>
+        <title>Jouni Airaksinen - cv</title>
         <meta
-          name="artworks of jouni airaksinen"
-          content="Sculptors, drawings"
+          name="cv of jouni airaksinen"
+          content="cv, curriculum vitae"
         />
       </Helmet>
       <Spacer height={80} />

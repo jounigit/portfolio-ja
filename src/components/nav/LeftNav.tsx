@@ -69,6 +69,7 @@ const navLinkTmp = ({
 }: INavProps) => (
   <LinkText>
     <NavLink
+      data-test="navLink"
       exact
       style={linkStyle}
       to={`${link}`}
@@ -83,7 +84,7 @@ const navLinkTmp = ({
 )
 
 const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
-  <Ul open={open}>
+  <Ul data-test="menu" open={open}>
     <li>
       {navLinkTmp({
         open, toggleOpen, text: <FaHome size={25} />, link: '/',

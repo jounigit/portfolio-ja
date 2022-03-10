@@ -69,7 +69,7 @@ const navLinkTmp = ({
 }: INavProps) => (
   <LinkText>
     <NavLink
-      data-test="navLink"
+      data-test={`navlink-${link}`}
       exact
       style={linkStyle}
       to={`${link}`}
@@ -97,7 +97,7 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
     </li>
     <li>
       {navLinkTmp({
-        open, toggleOpen, text: 'Näyttelyt', link: '/nayttelyt',
+        open, toggleOpen, text: 'Näyttelyt', link: '/exhibitions',
       })}
     </li>
     <li>

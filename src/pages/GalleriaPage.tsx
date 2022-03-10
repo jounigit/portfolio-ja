@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import { TailSpin } from 'react-loader-spinner'
 import Spacer from 'react-spacer'
 import { Helmet } from 'react-helmet-async'
@@ -9,17 +8,13 @@ import { useAlbumsByCategory } from '../hooks/useAlbums'
 import { Spinner } from '../styles/styles'
 import { FadeDiv } from './FadeIn.styles'
 
-const AlbumsCategoryPage: React.FC = () => {
-  const { categorySlug } = useParams<{categorySlug: string}>()
+const GalleriaPage: React.FC = () => {
+  const { isLoading, albumsByCategory } = useAlbumsByCategory('galleria')
 
-  const { isLoading, albumsByCategory } = useAlbumsByCategory(categorySlug)
+  const metaname = 'art works'
 
-  const metaname = categorySlug === 'nayttelyt'
-    ? 'art exhibitions, taidenäyttelyt' : categorySlug
-
-  const metacontent = categorySlug === 'nayttelyt'
-    ? 'art exhibitions by Jouni Airaksinen'
-    : `${categorySlug}, Jouni Airaksinen`
+  // eslint-disable-next-line max-len
+  const metacontent = 'art works, fine art, sculptures, drawings by Jouni Airaksinen'
 
   if (isLoading) {
     return (
@@ -35,17 +30,11 @@ const AlbumsCategoryPage: React.FC = () => {
 
   if (albumsByCategory === undefined) return <div>No albums found.</div>
 
-  const category = categorySlug === 'nayttelyt' ? 'NÄYTTELYT' : 'TEOKSET'
-
-  // console.log('## Albums: ', albumsByCategory)
-  // const categoryLoaded = isLoaded && <AlbumListCategory  />
-
   return (
     <>
       <Helmet>
         <title>
-          Jouni Airaksinen -
-          {categorySlug}
+          Jouni Airaksinen - galleria
         </title>
         <meta
           name={metaname}
@@ -54,7 +43,7 @@ const AlbumsCategoryPage: React.FC = () => {
       </Helmet>
       <Spacer height={80} />
       <div className="headerMiddle">
-        { category }
+        GALLERIA
       </div>
 
       {
@@ -69,4 +58,4 @@ const AlbumsCategoryPage: React.FC = () => {
   )
 }
 
-export default AlbumsCategoryPage
+export default GalleriaPage

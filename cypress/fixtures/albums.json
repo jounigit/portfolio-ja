@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "title": "Album 1",
+        "slug": "album-1",
+        "content": "Veniam fugit et qui optio. Aut eaque ipsam quo officia ut sequi est. Minus nemo placeat aliquid aut quaerat.",
+        "year": "2022",
+        "info": "Veniam fugit et qui optio. Aut eaque ipsam quo officia ut sequi est.",
+        "category": "2",
+        "pictures": ["4", "5"]
+    },
+    {
+        "id": "2",
+        "title": "Album 2",
+        "slug": "album-2",
+        "content": "Nobis dignissimos fuga deleniti aspernatur. Voluptatum similique et voluptatibus qui. Omnis voluptas laboriosam dignissimos quia et exercitationem. Ut et qui unde esse sed.",
+        "year": "2022",
+        "info": "Veniam fugit et qui optio. Aut eaque ipsam quo officia ut sequi est.",
+        "category": "2",
+        "pictures": ["1", "2", "3", "4", "5"]
+    },
+    {
+        "id": "3",
+        "title": "Album 3",
+        "slug": "album-3",
+        "content": "Hic odit veniam veritatis. Veritatis culpa tempora sequi magnam vel molestiae eius. Adipisci cum rerum hic perferendis corporis ratione quae.",
+        "year": "2021",
+        "info": "Veniam fugit et qui optio. Aut eaque ipsam quo officia ut sequi est.",
+        "category": "2",
+        "pictures": ["1", "2", "3"]
+    }
+]

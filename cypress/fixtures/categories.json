@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title":"Näyttelyt",
+        "slug":"nayttelyt",
+        "content": "",
+        "albums": [{"$oid":"1"},{"$oid":"2"},{"$oid":"3"}]
+    },
+    {
+        "id": 2,
+        "title": "Galleria",
+        "slug": "galleria",
+        "content": "",
+        "albums": ["1", "2", "3"]
+    }
+]
+

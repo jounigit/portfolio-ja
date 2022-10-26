@@ -4,7 +4,6 @@ import {
   Switch,
 } from 'react-router-dom'
 import { Album } from './components/album/Album'
-import { CategoryDetails } from './components/category/CategoryDetails'
 import Navbar from './components/nav/Navbar'
 import ArticlesPage from './pages/ArticlesPage'
 import Home from './pages/Home'
@@ -13,6 +12,7 @@ import { SiteContent } from './styles/styles'
 import CvPage from './pages/CvPage'
 import GalleriaPage from './pages/GalleriaPage'
 import ExhibitionPage from './pages/ExhibitionPage'
+import { CategoryDetails } from './components/category/CategoryDetails'
 
 const App: React.FC = () => (
   <>

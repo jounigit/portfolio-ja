@@ -13,6 +13,8 @@ import CvPage from './pages/CvPage'
 import GalleriaPage from './pages/GalleriaPage'
 import ExhibitionPage from './pages/ExhibitionPage'
 import { CategoryDetails } from './components/category/CategoryDetails'
+import { CreateAlbum } from './components/album/CreateAlbum'
+import { Login } from './components/login/login'
 
 const App: React.FC = () => (
   <>
@@ -20,6 +22,7 @@ const App: React.FC = () => (
     <Navbar />
     <SiteContent>
       <Switch>
+        {/* <Route path="/admin" component={} */}
         <Route exact path="/" component={Home} />
         <Route exact path="/cv" component={CvPage} />
         <Route path="/articles" component={ArticlesPage} />
@@ -27,6 +30,8 @@ const App: React.FC = () => (
         <Route exact path="/exhibitions" component={ExhibitionPage} />
         <Route exact path="/galleria/:slug" component={Album} />
         <Route path="/category/:id" component={CategoryDetails} />
+        <Route path="/album/create-album" component={CreateAlbum} />
+        <Route path="/login" component={Login} />
       </Switch>
     </SiteContent>
   </>

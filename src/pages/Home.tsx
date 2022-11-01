@@ -7,12 +7,21 @@ import { usePicturesQuery } from '../hooks/usePicture'
 import { Welcome } from '../components/welcome/Welcome'
 import { Spinner } from '../styles/styles'
 import { FadeDiv } from './FadeIn.styles'
+// import { authHeader } from '../services/apiService'
 
 const Home: React.FC = () => {
   const albumsQuery = useAlbums()
   const picturesQuery = usePicturesQuery()
 
   const isLoaded = albumsQuery.isSuccess && picturesQuery.isSuccess
+  // console.log('-- AuthHeaders: ', authHeader())
+  const userInfo = localStorage.getItem('token')
+  let token = null
+
+  if (userInfo) {
+    token = userInfo
+    console.log('-- Home token: ', token)
+  }
 
   return (
     <>

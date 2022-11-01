@@ -28,3 +28,26 @@ export const Spinner = styled(SiteContent)<SpinnerProps>`
     align-items: center;
     margin-top: ${({ marginTop }) => marginTop ?? 0}px;
 `
+
+export const FormContainer = styled(BaseContainer)`
+    flex-wrap: wrap;
+    padding: 1.4rem;
+    margin-top: 7rem;
+`
+export const Form = styled.form`
+    width: 300;
+    background: gray;
+    border: solid red 2px; 
+`
+export const Input = styled.input`
+  display: block;
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+  ::placeholder {
+    color: palevioletred;
+  }
+`

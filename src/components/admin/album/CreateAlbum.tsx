@@ -4,8 +4,8 @@ import React, { FC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Form, FormContainer, Input } from '../../styles/styles'
-import { useCreateAlbum } from '../../hooks/useAlbums'
+import { Form, FormContainer, Input } from '../../../styles/styles'
+import { useCreateAlbum } from '../../../hooks/useAlbums'
 
 const schema = yup.object().shape({
   title: yup.string().required(),

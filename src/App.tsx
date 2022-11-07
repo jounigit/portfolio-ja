@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Route,
   Switch,
+  useLocation,
 } from 'react-router-dom'
 import { Album } from './components/album/Album'
 import Navbar from './components/nav/Navbar'
@@ -13,28 +14,42 @@ import CvPage from './pages/CvPage'
 import GalleriaPage from './pages/GalleriaPage'
 import ExhibitionPage from './pages/ExhibitionPage'
 import { CategoryDetails } from './components/category/CategoryDetails'
-import { CreateAlbum } from './components/album/CreateAlbum'
 import { Login } from './components/login/login'
+import AdminPage from './components/admin/AdminPage'
 
-const App: React.FC = () => (
-  <>
-    <GlobalStyles />
-    <Navbar />
-    <SiteContent>
+const App: React.FC = () => {
+  const location = useLocation()
+
+  console.log('- Location: ', location.pathname.includes('admin'))
+
+  if (location.pathname === '/admin' || location.pathname === '/admin/*') {
+    console.log('- Adminsivut ')
+  }
+
+  const navbar = !location.pathname.includes('admin') && <Navbar />
+  const globalcss = !location.pathname.includes('admin') && <GlobalStyles />
+
+  return (
+    <>
+      { globalcss }
+      { navbar }
       <Switch>
-        {/* <Route path="/admin" component={} */}
-        <Route exact path="/" component={Home} />
-        <Route exact path="/cv" component={CvPage} />
-        <Route path="/articles" component={ArticlesPage} />
-        <Route exact path="/galleria" component={GalleriaPage} />
-        <Route exact path="/exhibitions" component={ExhibitionPage} />
-        <Route exact path="/galleria/:slug" component={Album} />
-        <Route path="/category/:id" component={CategoryDetails} />
-        <Route path="/album/create-album" component={CreateAlbum} />
-        <Route path="/login" component={Login} />
+        <Route path="/admin" component={AdminPage} />
+        <SiteContent>
+
+          <Route exact path="/" component={Home} />
+          <Route exact path="/cv" component={CvPage} />
+          <Route path="/articles" component={ArticlesPage} />
+          <Route exact path="/galleria" component={GalleriaPage} />
+          <Route exact path="/exhibitions" component={ExhibitionPage} />
+          <Route exact path="/galleria/:slug" component={Album} />
+          <Route path="/category/:id" component={CategoryDetails} />
+          <Route path="/login" component={Login} />
+
+        </SiteContent>
       </Switch>
-    </SiteContent>
-  </>
-)
+    </>
+  )
+}
 
 export default App

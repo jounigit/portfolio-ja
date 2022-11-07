@@ -4,7 +4,6 @@ import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { filterAlbums } from './filterAlbums'
 import { IAlbum } from '../../types'
-import { CreateAlbum } from './CreateAlbum'
 
 interface Props {
   albumsByCategory: IAlbum[]
@@ -28,8 +27,7 @@ export const AlbumListCategory: FC<Props> = ({ albumsByCategory })
 
   return (
     <AlbumListContainer>
-      <CreateAlbum />
-      <Link to="/album/create-album">
+      <Link to="/admin/album/create-album">
         <h2>Uusi albumi</h2>
       </Link>
       { mappedData && mappedData }

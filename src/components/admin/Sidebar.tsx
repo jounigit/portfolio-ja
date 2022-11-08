@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.nav`
-    z-index: 1;
-    width: 20%;
+    /* z-index: 1; */
+    /* width: 20%; */
     height: 100vh;
     background-color: rgb(30, 100, 97);
     padding-left: 2rem;

@@ -58,15 +58,3 @@ UseMutationResult<unknown, unknown, Params, unknown> {
     },
   )
 }
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// export function authHeader() {
-//   const user = JSON.parse(localStorage.getItem('user') || '')
-//   const token = JSON.parse(localStorage.getItem('token') || '')
-//   console.log('--- auth headers', user, ' token: ', token)
-
-//   if (user && token) {
-//     return { Authorization: `Bearer ${token}` }
-//   }
-//   return {}
-// }

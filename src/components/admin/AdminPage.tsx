@@ -41,8 +41,8 @@ const AdminPage: React.FC = () => {
                 path="/admin/album/album-list-admin"
                 component={AlbumListAdmin}
               />
+              <Route path="/admin/album/create-album" component={CreateAlbum} />
             </Content>
-            <Route path="/admin/album/create-album" component={CreateAlbum} />
           </Switch>
         </Col>
       </Row>

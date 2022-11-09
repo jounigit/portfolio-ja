@@ -21,18 +21,24 @@ export const api = axios.create({
 })
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-// const userInfo = localStorage.getItem('token')
-// let token = null
+const userInfo = localStorage.getItem('token')
+let token = null
 
-// if (userInfo) {
-//   token = JSON.parse(userInfo)
-// }
+if (userInfo) {
+  token = JSON.parse(userInfo)
+}
 
-// export const apiAuth = axios.create({
-//   baseURL,
-// })
+export const apiAuth = axios.create({
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    // Authorization: `Bearer ${token}`,
+  },
+})
 
-// apiAuth.defaults.headers.post.Authorization = `Bearer${token}`
+apiAuth.defaults.headers.common.Authorization = `Bearer ${token}`
+// apiAuth.defaults.headers.post.Authorization = `Bearer ${token}`
+// apiAuth.defaults.headers.delete.Authorization = `Bearer ${token}`
 
 // export const apiAuth = axios.create({
 //   baseURL,

@@ -1,4 +1,6 @@
+/* eslint-disable no-useless-return */
 import React, { FC } from 'react'
+import { useDeleteAlbum } from '../../../hooks/useAlbums'
 // import styled from 'styled-components'
 import { usePictures } from '../../../hooks/usePicture'
 import { Text } from '../../atoms'
@@ -23,9 +25,21 @@ FC<ItemProps> = ({
 
   const firstPic = pictureData.find((p) => p.id === pictures[0])
 
+  const { mutate } = useDeleteAlbum()
+
+  const remove = (): unknown => {
+    // eslint-disable-next-line no-alert
+    const ok = window.confirm(`remove album '${title}' '${id}'?`)
+    if (ok === false) {
+      return
+    }
+
+    mutate(id)
+  }
+
   // eslint-disable-next-line jsx-a11y/alt-text
   const showPic = <Image src={firstPic?.landscape} /> || <p>no pics yet</p>
-  console.log(id)
+  // console.log(id)
   return (
     <Grid size={5}>
       <Row>
@@ -41,7 +55,9 @@ FC<ItemProps> = ({
           <GreenButton as="a" href="#">
             Päivitä
           </GreenButton>
-          <RedButton as="a" href="#">
+          <RedButton
+            onClick={() => remove()}
+          >
             Poista
           </RedButton>
         </Col>

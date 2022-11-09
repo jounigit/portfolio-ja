@@ -2,13 +2,11 @@ import {
   useMutation,
   UseMutationResult,
   useQuery,
+  useQueryClient,
   UseQueryResult,
 } from 'react-query'
 import { INewAlbum, IAlbum } from '../types'
-import api
-// { apiAuth }
-  from '../config/axiosConfig'
-// import { authHeader } from '../services/apiService'
+import api, { apiAuth } from '../config/axiosConfig'
 // import { queryClient } from '../clientProvider'
 
 const getAlbums = async (): Promise<IAlbum[]> => {
@@ -25,23 +23,59 @@ export const getAlbum = async (id: string | undefined): Promise<IAlbum> => {
   return data
 }
 
-// export const createAlbum = async ({ title, year, content }: INewAlbum) => {
-
 export const createAlbum = async (newAlbum: INewAlbum): Promise<unknown> => {
-  // eslint-disable-next-line max-len
-  const response = await api.post<unknown>('/albums', newAlbum)
+  const response = await apiAuth.post<unknown>('/albums', newAlbum)
   console.log('-Create album: ', response.data)
 
   return response.data
 }
 
-// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+interface IUpdateProps{
+  id: string;
+  newAlbum: INewAlbum;
+}
 
-// TÄMÄ ON KESKEN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+export const updateAlbum = async ({ id, newAlbum }: IUpdateProps)
+: Promise<IAlbum> => {
+  const response = await apiAuth.post(`/albums/${id}`, newAlbum)
+  console.log('-Create album: ', response.data)
+
+  return response.data
+}
+
+export const deleteAlbum = async (id: string): Promise<unknown> => {
+  const response = await apiAuth.delete(`/albums/${id}`)
+  console.log('-Delete album: ', response)
+  return response
+}
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 export function useCreateAlbum():
 UseMutationResult<unknown, unknown, INewAlbum, unknown> {
   return useMutation(createAlbum)
+}
+
+export function useUpdateAlbum():
+UseMutationResult<unknown, unknown, IUpdateProps, unknown> {
+  return useMutation(updateAlbum)
+}
+
+export function useDeleteAlbum():
+UseMutationResult<unknown, unknown, string, unknown> {
+  const useClient = useQueryClient()
+  return useMutation(
+    deleteAlbum,
+    {
+      onSuccess: () => {
+        console.log('- Use delete success')
+        useClient.invalidateQueries('albums')
+      },
+      onError: () => {
+        console.log('- Use delete error')
+      },
+    },
+  )
 }
 
 export function useAlbums(): UseQueryResult<IAlbum[], unknown> {

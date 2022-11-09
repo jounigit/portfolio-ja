@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
+import { yupResolver } from '@hookform/resolvers/yup'
 import React, { FC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { Form, FormContainer, Input } from '../../../styles/styles'
-import { useCreateAlbum } from '../../../hooks/useAlbums'
 
 const schema = yup.object().shape({
   title: yup.string().required(),
@@ -13,32 +12,28 @@ const schema = yup.object().shape({
   info: yup.string(),
 })
 
-type Inputs = {
-    title: string;
-    year: number;
-    info: string;
-    content: string;
-}
+  type Inputs = {
+      title: string;
+      year: number;
+      info: string;
+      content: string;
+  }
 
-export const CreateAlbum: FC = () => {
+export const UpdateAlbum: FC = () => {
   const {
     register, handleSubmit, watch, formState: { errors }, reset,
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const { mutate } = useCreateAlbum()
-
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log({ data })
 
-    const newAlbum = {
-      title: data.title,
-      info: data.info,
-      year: data.year,
-      content: data.content,
-    }
+    // const newAlbum = {
+    //   title: data.title,
+    //   info: data.info,
+    //   year: data.year,
+    //   content: data.content,
+    // }
 
-    mutate(newAlbum)
     reset()
   }
 

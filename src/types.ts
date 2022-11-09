@@ -57,7 +57,7 @@ export interface IPicture extends BaseModel {
     publicIDThumb: string;
 }
 
-export type INewAlbum = Omit<IAlbum, 'id' | 'slug' | 'pictures' | 'info'>
+export type INewAlbum = Omit<IAlbum, 'id' | 'slug' | 'pictures'>
 export type INewCategory = Omit<ICategory, 'id'>
 export type ICategoryListItem = Omit<ICategory, 'content' | 'user' | 'albums'>
 export type IArticleListItem = Omit<IArticle, 'id' | 'slug'>

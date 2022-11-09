@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-return */
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { useDeleteAlbum } from '../../../hooks/useAlbums'
 // import styled from 'styled-components'
 import { usePictures } from '../../../hooks/usePicture'
@@ -40,6 +41,14 @@ FC<ItemProps> = ({
   // eslint-disable-next-line jsx-a11y/alt-text
   const showPic = <Image src={firstPic?.landscape} /> || <p>no pics yet</p>
   // console.log(id)
+  const link = (
+    <Link to={`/admin/album/album-admin/${id}`}>
+      <GreenButton>
+        Päivitä
+      </GreenButton>
+    </Link>
+  )
+
   return (
     <Grid size={5}>
       <Row>
@@ -52,9 +61,7 @@ FC<ItemProps> = ({
             flex: 2, flexDirection: 'row', justifyContent: 'space-evenly',
           }}
         >
-          <GreenButton as="a" href="#">
-            Päivitä
-          </GreenButton>
+          {link}
           <RedButton
             onClick={() => remove()}
           >

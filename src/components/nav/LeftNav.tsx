@@ -111,6 +111,15 @@ const LeftNav: FC<Props> = ({ open, toggleOpen }) => (
       })}
     </li>
 
+    {localStorage.getItem('token')
+        && (
+        <li>
+          {navLinkTmp({
+            open, toggleOpen, text: 'admin', link: '/admin',
+          })}
+        </li>
+        )}
+
     {/* <li>
       <LinkText>
         <Dropdown activatorText="Galleria" />

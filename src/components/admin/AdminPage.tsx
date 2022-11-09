@@ -5,7 +5,9 @@ import {
   Switch,
 } from 'react-router-dom'
 import styled from 'styled-components'
+import * as routes from '../../shared/constants/routes'
 import { Col, Grid, Row } from './Admin.styles'
+import { AlbumAdmin } from './album/AlbumAdmin'
 import { AlbumListAdmin } from './album/AlbumListAdmin'
 import { CreateAlbum } from './album/CreateAlbum'
 import NavbarAdmin from './NavbarAdmin'
@@ -37,11 +39,9 @@ const AdminPage: React.FC = () => {
         <Col size={3}>
           <Switch>
             <Content>
-              <Route
-                path="/admin/album/album-list-admin"
-                component={AlbumListAdmin}
-              />
+              <Route path={routes.ADMINALBUMS} component={AlbumListAdmin} />
               <Route path="/admin/album/create-album" component={CreateAlbum} />
+              <Route path={routes.ADMINALBUM} component={AlbumAdmin} />
             </Content>
           </Switch>
         </Col>

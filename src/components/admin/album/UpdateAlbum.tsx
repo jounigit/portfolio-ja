@@ -10,16 +10,21 @@ const schema = yup.object().shape({
   title: yup.string().required(),
   year: yup.number().required(),
   info: yup.string(),
+  content: yup.string(),
 })
 
-  type Inputs = {
+  interface Inputs {
       title: string;
       year: number;
       info: string;
       content: string;
   }
 
-export const UpdateAlbum: FC = () => {
+  interface InputProps {
+    albumData: Inputs;
+  }
+
+export const UpdateAlbum: FC<InputProps> = ({ albumData }) => {
   const {
     register, handleSubmit, watch, formState: { errors }, reset,
   } = useForm<Inputs>({ resolver: yupResolver(schema) })

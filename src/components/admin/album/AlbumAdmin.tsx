@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAlbumsData } from '../../../hooks/useAlbums'
+import { useAlbumById } from '../../../hooks/useAlbums'
 import { AlbumDetailsAdmin } from './AlbumDetailsAdmin'
 
 type AlbumParams = {
@@ -9,17 +9,15 @@ type AlbumParams = {
 
 export const AlbumAdmin: FC = () => {
   const { id } = useParams<AlbumParams>()
-  const albumsData = useAlbumsData()
+  const { isLoading, albumById } = useAlbumById(id)
 
-  const album = albumsData.find((a) => a.id === id)
+  if (isLoading) return <h3>Loading ...</h3>
 
-  if (album === undefined) {
-    return <div>Album is undefined.</div>
-  }
-  console.log('-Album admin: ', album)
+  if (albumById === undefined) return <h3>No album ...</h3>
+
   return (
     <AlbumDetailsAdmin
-      album={album}
+      album={albumById}
     />
   )
 }

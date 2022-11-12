@@ -21,7 +21,7 @@ export const AlbumListAdmin = (): JSX.Element => {
       key={a.id}
       id={a.id}
       title={a.title}
-      info={a.info}
+      category={a.category}
       pictures={a.pictures}
     />
   ))

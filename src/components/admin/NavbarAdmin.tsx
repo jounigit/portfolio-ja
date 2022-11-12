@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles/theme'
+import { NavbarLink } from './Admin.styles'
 
 const Container = styled.nav`
     z-index: 2;
@@ -18,6 +19,9 @@ const Container = styled.nav`
 
 const NavbarAdmin: FC = () => (
   <Container>
+    <NavbarLink to="/">
+      Etusivu
+    </NavbarLink>
     <div className="name">
       HALLINTASIVU
     </div>

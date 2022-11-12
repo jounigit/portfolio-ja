@@ -10,6 +10,7 @@ import { Col, Grid, Row } from './Admin.styles'
 import { AlbumAdmin } from './album/AlbumAdmin'
 import { AlbumListAdmin } from './album/AlbumListAdmin'
 import { CreateAlbum } from './album/CreateAlbum'
+import { UpdateAlbum } from './album/UpdateAlbum'
 import NavbarAdmin from './NavbarAdmin'
 import Sidebar from './Sidebar'
 // import { CreateAlbum } from './album/CreateAlbum'
@@ -42,6 +43,7 @@ const AdminPage: React.FC = () => {
               <Route path={routes.ADMINALBUMS} component={AlbumListAdmin} />
               <Route path="/admin/album/create-album" component={CreateAlbum} />
               <Route path={routes.ADMINALBUM} component={AlbumAdmin} />
+              <Route path={routes.ALBUMUPDATE} component={UpdateAlbum} />
             </Content>
           </Switch>
         </Col>

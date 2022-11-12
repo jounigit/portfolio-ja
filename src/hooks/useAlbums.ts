@@ -30,15 +30,15 @@ export const createAlbum = async (newAlbum: INewAlbum): Promise<unknown> => {
   return response.data
 }
 
-interface IUpdateProps{
+export interface IUpdateProps{
   id: string;
   newAlbum: INewAlbum;
 }
 
 export const updateAlbum = async ({ id, newAlbum }: IUpdateProps)
 : Promise<IAlbum> => {
-  const response = await apiAuth.post(`/albums/${id}`, newAlbum)
-  console.log('-Create album: ', response.data)
+  const response = await apiAuth.put(`/albums/${id}`, newAlbum)
+  console.log('-Update album: ', response.data)
 
   return response.data
 }
@@ -58,7 +58,18 @@ UseMutationResult<unknown, unknown, INewAlbum, unknown> {
 
 export function useUpdateAlbum():
 UseMutationResult<unknown, unknown, IUpdateProps, unknown> {
-  return useMutation(updateAlbum)
+  const useClient = useQueryClient()
+  return useMutation(
+    updateAlbum,
+    {
+      onSuccess: () => {
+        useClient.invalidateQueries('albums')
+      },
+      onError: () => {
+        console.log('- Use delete error')
+      },
+    },
+  )
 }
 
 export function useDeleteAlbum():
@@ -101,6 +112,31 @@ export function useAlbumsData(): IAlbum[] {
   }
   const emptyData = new Array<IAlbum>()
   return emptyData
+}
+
+// ::::::::: Hieman kankea, kts. kommentoitu useAlbumData() ::::::::::::::::::::
+export const useAlbumById = (id: string): {
+  isLoading: boolean;
+  albumById: IAlbum | undefined;
+} => {
+  const {
+    isLoading, isError, isSuccess, data,
+  } = useAlbums()
+
+  let albumById
+
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
+
+  if (isSuccess && data !== undefined) {
+    albumById = data.find((a) => a.id === id)
+  }
+
+  return {
+    isLoading,
+    albumById,
+  }
 }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import { useDeleteAlbum } from '../../../hooks/useAlbums'
 // import styled from 'styled-components'
 import { usePictures } from '../../../hooks/usePicture'
+import { ICategory } from '../../../types'
 import { Text } from '../../atoms'
-import { GreenButton, RedButton } from '../../atoms/Button'
+import { BlueButton, GreenButton, RedButton } from '../../atoms/Button'
 import { Title } from '../../atoms/Title'
 import {
   Col, Grid, Image, Row,
@@ -14,13 +15,13 @@ import {
 interface ItemProps {
     id: string,
     title: string,
-    info: string | undefined,
+    category: ICategory | undefined,
     pictures: string[]
 }
 
 export const AlbumListItemAdmin:
 FC<ItemProps> = ({
-  id, title, info, pictures,
+  id, title, category, pictures,
 }) => {
   const pictureData = usePictures()
 
@@ -39,11 +40,22 @@ FC<ItemProps> = ({
   }
 
   // eslint-disable-next-line jsx-a11y/alt-text
-  const showPic = <Image src={firstPic?.landscape} /> || <p>no pics yet</p>
-  // console.log(id)
+  const showPic = <Image src={firstPic?.landscape} />
+
+  const showCategory = category && category.slug
+  // console.log('- Category: ', category)
+
   const link = (
     <Link to={`/admin/album/album-admin/${id}`}>
-      <GreenButton>
+      <BlueButton size={0.5}>
+        Katso
+      </BlueButton>
+    </Link>
+  )
+
+  const linkUpdate = (
+    <Link to={`/admin/album/album-update/${id}`}>
+      <GreenButton size={0.5}>
         Päivitä
       </GreenButton>
     </Link>
@@ -54,15 +66,24 @@ FC<ItemProps> = ({
       <Row>
         <Col size={1}>{showPic}</Col>
         <Col size={2}><Title>{title}</Title></Col>
-        <Col size={2}><Text>{info}</Text></Col>
+        <Col size={1}>
+          <Text>
+            Category:
+            {' '}
+            {showCategory}
+          </Text>
+
+        </Col>
         <Col
           size={1}
-          style={{
-            flex: 2, flexDirection: 'row', justifyContent: 'space-evenly',
-          }}
+          // style={{
+          //   flex: 2, flexDirection: 'row', justifyContent: 'space-evenly',
+          // }}
         >
           {link}
+          {linkUpdate}
           <RedButton
+            size={0.5}
             onClick={() => remove()}
           >
             Poista

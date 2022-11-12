@@ -3,8 +3,11 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { FC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useHistory, useParams } from 'react-router-dom'
 import * as yup from 'yup'
+import { useAlbumById, useUpdateAlbum } from '../../../hooks/useAlbums'
 import { Form, FormContainer, Input } from '../../../styles/styles'
+import { GreenButton } from '../../atoms/Button'
 
 const schema = yup.object().shape({
   title: yup.string().required(),
@@ -23,47 +26,78 @@ const schema = yup.object().shape({
   interface InputProps {
     albumData: Inputs;
   }
+  type AlbumParams = {
+    id: string;
+  }
 
-export const UpdateAlbum: FC<InputProps> = ({ albumData }) => {
+export const UpdateAlbum: FC<InputProps> = () => {
   const {
-    register, handleSubmit, watch, formState: { errors }, reset,
+    register, handleSubmit, watch, formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
+
+  const { mutate } = useUpdateAlbum()
+  const history = useHistory()
+
+  const goBack = (): void => {
+    history.goBack()
+  }
+
+  // ::::::: get album by id ::::::::::::::::::::::::::
+  const { id } = useParams<AlbumParams>()
+  const { isLoading, albumById } = useAlbumById(id)
+
+  if (isLoading) return <h3>Loading ...</h3>
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log({ data })
 
-    // const newAlbum = {
-    //   title: data.title,
-    //   info: data.info,
-    //   year: data.year,
-    //   content: data.content,
-    // }
+    const newAlbum = {
+      title: data.title,
+      info: data.info,
+      year: data.year,
+      content: data.content,
+    }
 
-    reset()
+    mutate({ id, newAlbum })
+    goBack()
   }
 
   console.log(watch('title'))
 
   return (
     <FormContainer>
-      <p>LOMAKE</p>
+      <h2>Päivitä</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
 
-        <label>Title</label>
-        <Input {...register('title')} required />
+        <label htmlFor="title">Title</label>
+        <Input
+          {...register('title')}
+          required
+          defaultValue={albumById?.title}
+        />
         {errors.title?.message}
 
-        <label>Year</label>
-        <Input {...register('year')} required />
+        <label htmlFor="year">Year</label>
+        <Input
+          {...register('year')}
+          defaultValue={albumById?.year}
+          required
+        />
         {errors.year?.message}
 
-        <label>Info</label>
-        <Input {...register('info')} />
+        <label htmlFor="info">Info</label>
+        <Input
+          {...register('info')}
+          defaultValue={albumById?.info}
+        />
 
-        <label>Content</label>
-        <Input {...register('content')} />
+        <label htmlFor="content">Content</label>
+        <Input
+          {...register('content')}
+          defaultValue={albumById?.content}
+        />
 
-        <button type="submit">Lähetä</button>
+        <GreenButton type="submit">Lähetä</GreenButton>
       </Form>
     </FormContainer>
   )

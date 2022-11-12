@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+interface Props {
+  size?: number,
+}
+
+export const Button = styled.button<Props>`
   display: inline-block;
   color: palevioletred;
   font-size: 0.9em;
-  margin: 1em;
+  margin: ${(props) => props.size || 1}em;
   padding: 0.25em 1em;
   border-radius: 3px;
   /* display: block; */
@@ -22,4 +26,8 @@ export const GreenButton = styled(Button)`
 export const RedButton = styled(Button)`
   color: #fcfcfc;
   background-color: tomato;
+`
+export const BlueButton = styled(Button)`
+  color: #fcfcfc;
+  background-color: #0051ff;
 `

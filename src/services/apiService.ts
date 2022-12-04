@@ -3,7 +3,8 @@ import { useMutation, UseMutationResult } from 'react-query'
 import { api } from '../config/axiosConfig'
 
 // const apiUrl = 'http://localhost:3001/api'
-export const apiUrl = 'https://ja-api-ts.herokuapp.com/api'
+// export const apiUrl = 'https://ja-api-ts.herokuapp.com/api'
+export const apiUrl = 'https://ja-api-ts.fly.dev/api'
 
 // let token = null
 // let config = Array<string>

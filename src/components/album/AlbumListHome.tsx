@@ -5,14 +5,14 @@ import { AlbumHomePageContainer } from './AlbumHomePage.styles'
 import { filterAlbums } from './filterAlbums'
 
 interface Props {
-  category: string,
+  categoryId: string,
   columns: number
 }
 
 export const AlbumListHome: FC<Props> = (
-  { category, columns },
+  { categoryId, columns },
 ): JSX.Element => {
-  const { isLoading, albumsByCategory } = useAlbumsByCategory(category)
+  const { isLoading, albumsByCategory } = useAlbumsByCategory(categoryId)
 
   if (isLoading) return <h3>Loading ...</h3>
 

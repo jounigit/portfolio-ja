@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom'
 import { useDeleteAlbum } from '../../../hooks/useAlbums'
 // import styled from 'styled-components'
 import { usePictures } from '../../../hooks/usePicture'
-import { ICategory } from '../../../types'
-import { Text } from '../../atoms'
+import { IAlbum } from '../../../types'
+// import { ICategory } from '../../../types'
+// import { Text } from '../../atoms'
 import { BlueButton, GreenButton, RedButton } from '../../atoms/Button'
 import { Title } from '../../atoms/Title'
 import {
   Col, Grid, Image, Row,
 } from '../Admin.styles'
+import { SelectAlbumCategory } from './SelectAlbumCategory'
 
 interface ItemProps {
-    id: string,
-    title: string,
-    category: ICategory | undefined,
-    pictures: string[]
+    album: IAlbum
 }
 
 export const AlbumListItemAdmin:
-FC<ItemProps> = ({
-  id, title, category, pictures,
-}) => {
+FC<ItemProps> = ({ album }) => {
   const pictureData = usePictures()
+  const {
+    id, title, pictures,
+  } = album
 
-  const firstPic = pictureData.find((p) => p.id === pictures[0])
+  const firstPic = pictures && pictureData.find((p) => p.id === pictures[0])
 
   const { mutate } = useDeleteAlbum()
 
@@ -39,11 +39,7 @@ FC<ItemProps> = ({
     mutate(id)
   }
 
-  // eslint-disable-next-line jsx-a11y/alt-text
-  const showPic = <Image src={firstPic?.landscape} />
-
-  const showCategory = category && category.slug
-  // console.log('- Category: ', category)
+  const showPic = <Image src={firstPic?.landscape} alt="kuva" />
 
   const link = (
     <Link to={`/admin/album/album-admin/${id}`}>
@@ -67,12 +63,7 @@ FC<ItemProps> = ({
         <Col size={1}>{showPic}</Col>
         <Col size={2}><Title>{title}</Title></Col>
         <Col size={1}>
-          <Text>
-            Category:
-            {' '}
-            {showCategory}
-          </Text>
-
+          <SelectAlbumCategory album={album} />
         </Col>
         <Col
           size={1}

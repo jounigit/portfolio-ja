@@ -19,10 +19,7 @@ export const AlbumListAdmin = (): JSX.Element => {
   const mappedData = albums?.map((a) => (
     <AlbumListItemAdmin
       key={a.id}
-      id={a.id}
-      title={a.title}
-      category={a.category}
-      pictures={a.pictures}
+      album={a}
     />
   ))
 

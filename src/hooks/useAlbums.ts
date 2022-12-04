@@ -7,7 +7,6 @@ import {
 } from 'react-query'
 import { INewAlbum, IAlbum } from '../types'
 import api, { apiAuth } from '../config/axiosConfig'
-// import { queryClient } from '../clientProvider'
 
 const getAlbums = async (): Promise<IAlbum[]> => {
   const { data } = await api.get('/albums')
@@ -140,7 +139,7 @@ export const useAlbumById = (id: string): {
 }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-export const useAlbumsByCategory = (slug: string): {
+export const useAlbumsByCategory = (categoryId: string): {
   isLoading: boolean;
   albumsByCategory: IAlbum[] | undefined;
 } => {
@@ -156,7 +155,7 @@ export const useAlbumsByCategory = (slug: string): {
 
   if (isSuccess && data !== undefined) {
     albumsByCategory = data
-      .filter((a) => (a.category?.slug === slug))
+      .filter((a) => (a.category?.id === categoryId))
   }
 
   return {

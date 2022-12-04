@@ -32,7 +32,7 @@ export const Spinner = styled(SiteContent)<SpinnerProps>`
 export const FormContainer = styled(BaseContainer)`
     flex-wrap: wrap;
     padding: 1.4rem;
-    margin-top: 7rem;
+    /* margin-top: 7rem; */
 `
 export const Form = styled.form`
     width: 300;

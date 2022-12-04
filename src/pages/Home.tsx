@@ -1,25 +1,23 @@
 import React from 'react'
-// import { AlbumsList } from '../components/album/AlbumList'
 import { TailSpin } from 'react-loader-spinner'
-import { AlbumListHome } from '../components/album/AlbumListHome'
 import { useAlbums } from '../hooks/useAlbums'
 import { usePicturesQuery } from '../hooks/usePicture'
 import { Welcome } from '../components/welcome/Welcome'
 import { Spinner } from '../styles/styles'
 import { FadeDiv } from './FadeIn.styles'
-// import { authHeader } from '../services/apiService'
+import { useCategories } from '../hooks/useCategories'
+import { HomePageDetails } from './HomePageDetails'
 
 const Home: React.FC = () => {
   const albumsQuery = useAlbums()
   const picturesQuery = usePicturesQuery()
+  const { isSuccess: catOK, data: categories } = useCategories()
 
-  const isLoaded = albumsQuery.isSuccess && picturesQuery.isSuccess
-  // console.log('-- AuthHeaders: ', authHeader())
-  const userInfo = localStorage.getItem('token')
-  let token = null
+  const isLoaded = albumsQuery.isSuccess
+  && picturesQuery.isSuccess && catOK
+  const token = localStorage.getItem('token')
 
-  if (userInfo) {
-    token = userInfo
+  if (token) {
     console.log('-- Home token: ', token)
   }
 
@@ -39,22 +37,21 @@ const Home: React.FC = () => {
         </Spinner>
       )}
       {
-      isLoaded
-      && (
-      <>
-        <FadeDiv timein="0.3s">
-          <AlbumListHome category="galleria" columns={2} />
-        </FadeDiv>
-        <FadeDiv timein="0.3s">
-          <div className="headerMiddle">
-            NÄYTTELYT
-          </div>
-          <AlbumListHome category="nayttelyt" columns={3} />
-          {/* <AlbumsList /> */}
-        </FadeDiv>
-
-      </>
-      )
+        isLoaded && categories
+        && (
+        <>
+          <HomePageDetails
+            slug="galleria"
+            columns={2}
+            categories={categories}
+          />
+          <HomePageDetails
+            slug="nayttelyt"
+            columns={3}
+            categories={categories}
+          />
+        </>
+        )
       }
     </>
   )

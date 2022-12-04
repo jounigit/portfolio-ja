@@ -12,7 +12,7 @@ export function useCategories(): UseQueryResult<ICategory[], unknown> {
 }
 
 export function useCategoriesData(): ICategory[] {
-  const { isError, data } = useQuery('albums', getCategories)
+  const { isError, data } = useQuery('categories', getCategories)
 
   if (isError) {
     throw new Error('Error fetching data.')
@@ -23,6 +23,37 @@ export function useCategoriesData(): ICategory[] {
   }
   const emptyData = new Array<ICategory>()
   return emptyData
+}
+
+// ############### gategory exist helper #######################
+export const useCategoryExist = (slug: string): boolean => {
+  const categories = useCategoriesData()
+
+  return categories.some((c) => c.slug === slug)
+}
+// #############################################################
+export const useCategoryBySlug = (slug: string): {
+  isLoading: boolean;
+  categoryBySlug: ICategory | undefined;
+} => {
+  const {
+    isLoading, isError, isSuccess, data,
+  } = useCategories()
+
+  let categoryBySlug
+
+  if (isError) {
+    throw new Error('Error fetching data.')
+  }
+
+  if (isSuccess && data !== undefined) {
+    categoryBySlug = data.find((c) => c.slug === slug)
+  }
+
+  return {
+    isLoading,
+    categoryBySlug,
+  }
 }
 
 // #############################################################

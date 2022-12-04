@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import { useAlbumById, useUpdateAlbum } from '../../../hooks/useAlbums'
 import { Form, FormContainer, Input } from '../../../styles/styles'
 import { GreenButton } from '../../atoms/Button'
+// import { SelectAlbumCategory } from './SelectAlbumCategory'
 
 const schema = yup.object().shape({
   title: yup.string().required(),
@@ -65,40 +66,43 @@ export const UpdateAlbum: FC<InputProps> = () => {
   console.log(watch('title'))
 
   return (
-    <FormContainer>
+    <>
       <h2>Päivitä</h2>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      {/* <SelectAlbumCategory albumId={id} /> */}
+      <FormContainer>
+        <Form onSubmit={handleSubmit(onSubmit)}>
 
-        <label htmlFor="title">Title</label>
-        <Input
-          {...register('title')}
-          required
-          defaultValue={albumById?.title}
-        />
-        {errors.title?.message}
+          <label htmlFor="title">Title</label>
+          <Input
+            {...register('title')}
+            required
+            defaultValue={albumById?.title}
+          />
+          {errors.title?.message}
 
-        <label htmlFor="year">Year</label>
-        <Input
-          {...register('year')}
-          defaultValue={albumById?.year}
-          required
-        />
-        {errors.year?.message}
+          <label htmlFor="year">Year</label>
+          <Input
+            {...register('year')}
+            defaultValue={albumById?.year}
+            required
+          />
+          {errors.year?.message}
 
-        <label htmlFor="info">Info</label>
-        <Input
-          {...register('info')}
-          defaultValue={albumById?.info}
-        />
+          <label htmlFor="info">Info</label>
+          <Input
+            {...register('info')}
+            defaultValue={albumById?.info}
+          />
 
-        <label htmlFor="content">Content</label>
-        <Input
-          {...register('content')}
-          defaultValue={albumById?.content}
-        />
+          <label htmlFor="content">Content</label>
+          <Input
+            {...register('content')}
+            defaultValue={albumById?.content}
+          />
 
-        <GreenButton type="submit">Lähetä</GreenButton>
-      </Form>
-    </FormContainer>
+          <GreenButton type="submit">Lähetä</GreenButton>
+        </Form>
+      </FormContainer>
+    </>
   )
 }

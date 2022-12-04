@@ -36,17 +36,19 @@ export interface ICategory extends BaseModel {
     albums: Array<string>;
 }
 
+export type ICategoryInAlbum = Omit<ICategory, 'title' | 'content' | 'albums'>
+
 export interface IAlbum extends BaseModel {
     year: number;
     info?: string;
-    category?: ICategory;
+    category?: ICategoryInAlbum;
     pictures: Array<string>;
 }
 
-export interface IAlbumDetails extends BaseModel {
-    category?: string;
-    pictures: IPicture[]
-}
+// export interface IAlbumDetails extends BaseModel {
+//     category?: string;
+//     pictures: IPicture[]
+// }
 
 export interface IPicture extends BaseModel {
     year: number;

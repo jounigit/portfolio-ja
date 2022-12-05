@@ -15,7 +15,7 @@ import GalleriaPage from './pages/GalleriaPage'
 import ExhibitionPage from './pages/ExhibitionPage'
 import { CategoryDetails } from './components/category/CategoryDetails'
 import { Login } from './components/login/login'
-import AdminPage from './components/admin/AdminPage'
+// import AdminPage from './components/admin/AdminPage'
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -34,7 +34,7 @@ const App: React.FC = () => {
       { globalcss }
       { navbar }
       <Switch>
-        <Route path="/admin" component={AdminPage} />
+        {/* <Route path="/admin" component={AdminPage} /> */}
         <SiteContent>
 
           <Route exact path="/" component={Home} />

@@ -17,6 +17,7 @@ export const AlbumListHome: FC<Props> = (
   if (isLoading) return <h3>Loading ...</h3>
 
   if (albumsByCategory === undefined) return <h3>No albums ...</h3>
+  console.log('## List Home Albums: ', albumsByCategory && albumsByCategory)
 
   const orderByYear = filterAlbums(albumsByCategory)
 

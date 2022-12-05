@@ -27,9 +27,9 @@ export const AlbumListCategory: FC<Props> = ({ albumsByCategory })
 
   return (
     <AlbumListContainer>
-      <Link to="/admin/album/create-album">
+      {/* <Link to="/admin/album/create-album">
         <h2>Uusi albumi</h2>
-      </Link>
+      </Link> */}
       { mappedData && mappedData }
     </AlbumListContainer>
   )

@@ -28,6 +28,7 @@ const GalleriaPage: React.FC = () => {
     )
   }
 
+  console.log('## Albums: ', albumsByCategory && albumsByCategory)
   if (albumsByCategory === undefined) return <div>No albums found.</div>
 
   return (

@@ -17,13 +17,7 @@ export const AlbumsList = (): JSX.Element => {
   const mappedData = albums?.map((a) => (
     <AlbumListItem
       key={a.id}
-      id={a.id}
-      title={a.title}
-      slug={a.slug}
-      info={a.info}
-      pictures={a.pictures}
-      // width={100}
-      // height={100}
+      album={a}
     />
   ))
 

@@ -33,6 +33,7 @@ interface ILoginResponse {
   id: string;
   role: string;
 }
+
 export const login = async (payload: Params): Promise<ILoginResponse> => {
   const response = await api.post(
     '/login',
@@ -41,7 +42,6 @@ export const login = async (payload: Params): Promise<ILoginResponse> => {
       password: payload.password,
     },
   )
-
   console.log('-Login: ', response.data)
   return response.data
 }
@@ -55,6 +55,51 @@ UseMutationResult<unknown, unknown, Params, unknown> {
         console.log('-UseLogin: ', data)
         localStorage.setItem('user', JSON.stringify(data.user))
         localStorage.setItem('token', JSON.stringify(data.token))
+      },
+    },
+  )
+}
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+interface ParamsCreate {
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
+interface ICreateUserResponse {
+  token: string;
+  user: string;
+  email: string;
+  id: string;
+  role: string;
+}
+
+export const createUser = async (
+  payload: ParamsCreate,
+): Promise<ICreateUserResponse> => {
+  const response = await api.post(
+    '/user',
+    {
+      username: payload.username,
+      email: payload.email,
+      password: payload.password,
+      role: payload.role,
+    },
+  )
+  console.log('-Create user: ', response.data)
+  return response.data
+}
+
+export function useCreateUser():
+UseMutationResult<unknown, unknown, ParamsCreate, unknown> {
+  return useMutation(
+    createUser,
+    {
+      onSuccess: (data) => {
+        console.log('-Created user: ', data)
       },
     },
   )

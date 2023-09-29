@@ -1,7 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { FC, useState } from 'react'
+import {
+  IUpdateCatProps,
+  useUpdateAlbumCategory,
+} from '../../../hooks/useAlbums'
 import { useCategoriesData } from '../../../hooks/useCategories'
+import { Form } from '../../../styles/styles'
 import { IAlbum } from '../../../types'
+import { GreenButton } from '../../atoms/Button'
 
 type Props = {
   album: IAlbum
@@ -11,15 +17,25 @@ export const SelectAlbumCategory: FC<Props> = (
   { album },
 ): JSX.Element => {
   const categoryData = useCategoriesData()
+  const { mutate } = useUpdateAlbumCategory()
   const [selectedOption, setSelectedOption] = useState<string>()
 
-  // const categoryOptions = categoryData.map(
-  //   (c) => <option key={c.id} value={c.id}>{c.title}</option>,
-  // )
-
-  if (categoryData.length === 0) {
-    return <h3>no categories yet.</h3>
+  const selectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    const { value } = event.target
+    setSelectedOption(value)
   }
+
+  const handleSubmit = (): void => {
+    // const albumID = album.id as string
+    const ids: IUpdateCatProps = {
+      id: album.id,
+      catID: selectedOption || '',
+    }
+    mutate(ids)
+  }
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  if (categoryData.length === 0) { return <h3>no categories yet.</h3> }
 
   let categoryNow
 
@@ -28,37 +44,33 @@ export const SelectAlbumCategory: FC<Props> = (
     categoryNow = categoryData.find((c) => c.id === album.category?.id)
   }
 
-  // console.log('-ID: ', albumId, ' ### ', categoryData)
-  console.log(' ### ', categoryNow && categoryNow.title)
-
-  // categoryOptions.concat({ id: '', title: 'choose category...' })
-
-  const selectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    const { value } = event.target
-    setSelectedOption(value)
-  }
-
-  // console.log('-Select Category: ', categoryOptions)
-  // console.log(category, '-Select Category: ', categoryData)
+  const categoryOptions = categoryData.map((c) => (
+    <option key={c.id} value={c.id}>{c.title}</option>
+  ))
 
   return (
     <div>
       <h3>Category</h3>
       <p>{categoryNow && categoryNow.title}</p>
-      <select
-        defaultValue="DEFAULT"
-        onChange={selectChange}
-      >
-        <option value="DEFAULT" disabled>
-          Choose one
-        </option>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="yellow">Yellow</option>
-        <option value="kindacode.com">Kindacode.com</option>
-      </select>
-      {selectedOption && <h2>{selectedOption}</h2>}
+
+      <Form onSubmit={handleSubmit}>
+        <select
+          defaultValue="DEFAULT"
+          onChange={selectChange}
+        >
+          <option value="DEFAULT" disabled>
+            Choose one
+          </option>
+          {categoryOptions}
+        </select>
+        <GreenButton size={0.5} type="submit">Lähetä</GreenButton>
+      </Form>
+
+      {/* {selectedOption && <h3>{selectedOption}</h3>} */}
     </div>
   )
 }
+
+// eslint-disable-next-line no-lone-blocks
+{ /* <option value="nayttelyt">Näyttelyt</option>
+        <option value="galleria">Galleria</option> */ }

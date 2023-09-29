@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import api from '../config/axiosConfig'
 import { ICategory } from '../types'
+import api from '../config/axiosConfig'
 
 const getCategories = async (): Promise<ICategory[]> => {
   const { data } = await api.get('/categories')
@@ -32,12 +32,9 @@ export const useCategoryExist = (slug: string): boolean => {
   return categories.some((c) => c.slug === slug)
 }
 // #############################################################
-export const useCategoryBySlug = (slug: string): {
-  isLoading: boolean;
-  categoryBySlug: ICategory | undefined;
-} => {
+export const useCategoryBySlug = (slug: string): ICategory => {
   const {
-    isLoading, isError, isSuccess, data,
+    isError, isSuccess, data,
   } = useCategories()
 
   let categoryBySlug
@@ -50,11 +47,39 @@ export const useCategoryBySlug = (slug: string): {
     categoryBySlug = data.find((c) => c.slug === slug)
   }
 
-  return {
-    isLoading,
-    categoryBySlug,
+  if (categoryBySlug !== undefined
+    && (categoryBySlug as ICategory)) {
+    return categoryBySlug
   }
+
+  const emptyData = <ICategory>{}
+  return emptyData
 }
+
+// ###################
+// export const useCategoryBySlug = (slug: string): {
+//   isLoading: boolean;
+//   categoryBySlug: ICategory | undefined;
+// } => {
+//   const {
+//     isLoading, isError, isSuccess, data,
+//   } = useCategories()
+
+//   let categoryBySlug
+
+//   if (isError) {
+//     throw new Error('Error fetching data.')
+//   }
+
+//   if (isSuccess && data !== undefined) {
+//     categoryBySlug = data.find((c) => c.slug === slug)
+//   }
+
+//   return {
+//     isLoading,
+//     categoryBySlug,
+//   }
+// }
 
 // #############################################################
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

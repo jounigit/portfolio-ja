@@ -15,26 +15,28 @@ import GalleriaPage from './pages/GalleriaPage'
 import ExhibitionPage from './pages/ExhibitionPage'
 import { CategoryDetails } from './components/category/CategoryDetails'
 import { Login } from './components/login/login'
-// import AdminPage from './components/admin/AdminPage'
+import AdminPage from './components/admin/AdminPage'
+import { CreateUser } from './components/user/CreateUser'
 
 const App: React.FC = () => {
   const location = useLocation()
 
-  console.log('- Location: ', location.pathname.includes('admin'))
+  const isHomePage = (location.pathname === '/')
+  const isAdminPage = location.pathname.includes('admin')
 
-  if (location.pathname === '/admin' || location.pathname === '/admin/*') {
-    console.log('- Adminsivut ')
-  }
+  // if (location.pathname === '/admin' || location.pathname === '/admin/*') {
+  //   console.log('- Adminsivut ')
+  // }
 
-  const navbar = !location.pathname.includes('admin') && <Navbar />
-  const globalcss = !location.pathname.includes('admin') && <GlobalStyles />
+  // const navbar = !location.pathname.includes('admin') && <Navbar />
+  // const globalcss = !location.pathname.includes('admin') && <GlobalStyles />
 
   return (
     <>
-      { globalcss }
-      { navbar }
+      <GlobalStyles homePage={isHomePage} adminPage={isAdminPage} />
+      { isHomePage && <Navbar /> }
       <Switch>
-        {/* <Route path="/admin" component={AdminPage} /> */}
+        <Route path="/admin" component={AdminPage} />
         <SiteContent>
 
           <Route exact path="/" component={Home} />
@@ -45,6 +47,7 @@ const App: React.FC = () => {
           <Route exact path="/galleria/:slug" component={Album} />
           <Route path="/category/:id" component={CategoryDetails} />
           <Route path="/login" component={Login} />
+          <Route path="/create-user" component={CreateUser} />
 
         </SiteContent>
       </Switch>

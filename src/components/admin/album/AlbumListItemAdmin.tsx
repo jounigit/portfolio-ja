@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-useless-return */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
@@ -30,7 +31,6 @@ FC<ItemProps> = ({ album }) => {
   const { mutate } = useDeleteAlbum()
 
   const remove = (): unknown => {
-    // eslint-disable-next-line no-alert
     const ok = window.confirm(`remove album '${title}' '${id}'?`)
     if (ok === false) {
       return

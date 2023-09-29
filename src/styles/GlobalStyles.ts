@@ -5,7 +5,14 @@ import {
 import bgImage from '../assets/taustakuva-01.jpg'
 import { colors } from './theme'
 
-const GlobalStyles = createGlobalStyle`
+interface Prop {
+  bgImage?: false | true | undefined,
+  homePage?: false | true | undefined,
+  bgColor?: string | undefined,
+  adminPage?: false | true | undefined,
+}
+
+const GlobalStyles = createGlobalStyle<Prop>`
 
   * {
     margin: 0;
@@ -14,32 +21,38 @@ const GlobalStyles = createGlobalStyle`
     outline: 0;
     font-family: Nunito, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       -webkit-font-smoothing: antialiased;
-    /* font-size: 16px; */
     font-size: clamp(16px, 2vw, 20px);
     /* vars */
+    --bg-white: rgb(255,255,255,0.8);
     --bg-primary: rgb(255,255,255,0.7);
     --bg-secondary: rgb(255,255,255,0.6);
     --shadow-primary: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --gray-1: ${colors.grey1};
+    --gray-2: ${colors.grey2};
+    --gray-3: ${colors.grey3};
+    --gray-4: ${colors.grey4};
+    --gray-5: ${colors.grey5};
   }
 
   html  {
     overflow-y: auto;
     overflow-x: auto;
-    background-color: #ffffff;
-    background-image: url(${bgImage});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;  
-    background-size: cover;
   }
 
   html, body, #root {
-    height: 100%;
+    width: 100%;
+    min-height: 100vh;
   }
 
   #root, body {
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    background-image: url(${(props) => (!props.adminPage && bgImage)});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
   }
 
   .headerMiddle {

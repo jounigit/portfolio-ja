@@ -3,15 +3,19 @@ import styled from 'styled-components'
 import { colors } from '../../styles/theme'
 import { NavbarLink } from './Admin.styles'
 
-const Container = styled.nav`
-    z-index: 2;
-    height: 4rem;
+const Container = styled.div`   
+    position: fixed;
+    left: 0;
+    top: 0;
     background-color: rgb(30, 100, 97);
+    width: 100vh;
+    width: 100%;
+    height: 4rem;
+    padding: 1rem;
 
     .name {
-    padding: 0.8em 0.5em 0;
     float: right;
-    color: ${colors.grey5};
+    color: ${colors.grey3};
     font-size: 1.2rem;
     font-weight: 500;
   }

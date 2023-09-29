@@ -1,40 +1,49 @@
 import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { colors } from '../../styles/theme'
 
-const Container = styled.nav`
-    /* z-index: 1; */
-    /* width: 20%; */
-    height: 100vh;
-    background-color: rgb(30, 100, 97);
-    padding-left: 2rem;
+const Container = styled.div`
+    padding: 2rem 0 0 2rem;
+    padding-top: 2rem;
 `
-const LinkText = styled.h2`
-   font-size: 1.75rem;
+
+const SidebarLink = styled(NavLink)`
+   display: block;
+   padding: 0.4rem 0;
+   font-size: 1.2rem;
+   font-size: x-large;
+    font-weight: 600;
+   &:hover,
+    &:focus{
+      color: ${colors.grey4};
+    }
+    &:active{
+      color: ${colors.grey4};
+    };
 `
 
 const Sidebar: FC = () => (
   <Container>
-    <LinkText>
-      <Link to="/admin/album/album-list-admin">
-        Albumit
-      </Link>
-    </LinkText>
-    <LinkText>
-      <Link to="/admin/album/create-album">
-        Uusi albumi
-      </Link>
-    </LinkText>
-    <LinkText>
-      <Link to="/album/create-album">
-        Uusi categoria
-      </Link>
-    </LinkText>
-    <LinkText>
-      <Link to="/album/create-album">
-        Uusi kuva
-      </Link>
-    </LinkText>
+    {/* <SidebarLink to="/dashboard">
+      <FaHome />
+    </SidebarLink> */}
+    <SidebarLink to="/admin/album/album-list-admin">
+      Albumit
+    </SidebarLink>
+    <SidebarLink to="/admin/picture/picture-list-admin">
+      Kuva-arkisto
+    </SidebarLink>
+    <p>.................</p>
+    <SidebarLink to="/admin/album/create-album">
+      Uusi albumi
+    </SidebarLink>
+    <SidebarLink to="/album/create-album">
+      Uusi categoria
+    </SidebarLink>
+    <SidebarLink to="/album/create-album">
+      Uusi kuva
+    </SidebarLink>
   </Container>
 )
 

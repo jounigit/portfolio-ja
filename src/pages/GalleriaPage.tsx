@@ -4,17 +4,19 @@ import Spacer from 'react-spacer'
 import { Helmet } from 'react-helmet-async'
 import { AlbumListCategory } from '../components/album/AlbumListCategory'
 import { useAlbumsByCategory } from '../hooks/useAlbums'
-// import { usePicturesQuery } from '../hooks/usePicture'
 import { Spinner } from '../styles/styles'
 import { FadeDiv } from './FadeIn.styles'
+import { useCategoryBySlug } from '../hooks/useCategories'
 
 const GalleriaPage: React.FC = () => {
-  const { isLoading, albumsByCategory } = useAlbumsByCategory('galleria')
+  const category = useCategoryBySlug('galleria')
+  const { isLoading, albumsByCategory } = useAlbumsByCategory(category.id)
+  console.log('## G page: ', category)
 
   const metaname = 'art works'
 
-  // eslint-disable-next-line max-len
-  const metacontent = 'art works, fine art, sculptures, drawings by Jouni Airaksinen'
+  const metacontent = 'art works, fine art, sculptures,'
+  + 'drawings by Jouni Airaksinen'
 
   if (isLoading) {
     return (

@@ -6,9 +6,11 @@ import { AlbumListCategory } from '../components/album/AlbumListCategory'
 import { useAlbumsByCategory } from '../hooks/useAlbums'
 import { Spinner } from '../styles/styles'
 import { FadeDiv } from './FadeIn.styles'
+import { useCategoryBySlug } from '../hooks/useCategories'
 
 const ExhibitionPage: React.FC = () => {
-  const { isLoading, albumsByCategory } = useAlbumsByCategory('nayttelyt')
+  const category = useCategoryBySlug('nayttelyt')
+  const { isLoading, albumsByCategory } = useAlbumsByCategory(category.id)
 
   const metaname = 'art exhibitions, taidenäyttelyt'
 
@@ -41,7 +43,7 @@ const ExhibitionPage: React.FC = () => {
       </Helmet>
       <Spacer height={80} />
       <div className="headerMiddle">
-        NÄYTTELYT 2
+        NÄYTTELYT
       </div>
 
       {

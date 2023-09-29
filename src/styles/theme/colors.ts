@@ -1,7 +1,8 @@
 const colors = {
   grey1: '#e5e6e6',
-  grey2: '#e6e6e6',
-  grey3: '#41464e',
+  grey1b: '#DEDEDE',
+  grey2: '#c7c7c7',
+  grey3: '#999999',
   grey4: '#686868',
   grey5: '#2e3238',
   white: '#fff',

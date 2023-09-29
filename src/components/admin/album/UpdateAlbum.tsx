@@ -68,7 +68,6 @@ export const UpdateAlbum: FC<InputProps> = () => {
   return (
     <>
       <h2>Päivitä</h2>
-      {/* <SelectAlbumCategory albumId={id} /> */}
       <FormContainer>
         <Form onSubmit={handleSubmit(onSubmit)}>
 

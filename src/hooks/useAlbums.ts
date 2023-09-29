@@ -29,7 +29,7 @@ export const createAlbum = async (newAlbum: INewAlbum): Promise<unknown> => {
   return response.data
 }
 
-export interface IUpdateProps{
+interface IUpdateProps{
   id: string;
   newAlbum: INewAlbum;
 }
@@ -48,6 +48,19 @@ export const deleteAlbum = async (id: string): Promise<unknown> => {
   return response
 }
 
+export interface IUpdateCatProps{
+  id: string;
+  catID: string;
+}
+
+export const updateAlbumCategory = async ({ id, catID }: IUpdateCatProps)
+: Promise<IAlbum> => {
+  const response = await apiAuth.put(`/albums/${id}/category/${catID}`)
+  console.log('-Update cat album: ', response.data)
+
+  return response.data
+}
+
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 export function useCreateAlbum():
@@ -60,6 +73,22 @@ UseMutationResult<unknown, unknown, IUpdateProps, unknown> {
   const useClient = useQueryClient()
   return useMutation(
     updateAlbum,
+    {
+      onSuccess: () => {
+        useClient.invalidateQueries('albums')
+      },
+      onError: () => {
+        console.log('- Use delete error')
+      },
+    },
+  )
+}
+
+export function useUpdateAlbumCategory():
+UseMutationResult<unknown, unknown, IUpdateCatProps, unknown> {
+  const useClient = useQueryClient()
+  return useMutation(
+    updateAlbumCategory,
     {
       onSuccess: () => {
         useClient.invalidateQueries('albums')

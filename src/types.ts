@@ -41,7 +41,7 @@ export type ICategoryInAlbum = Omit<ICategory, 'title' | 'content' | 'albums'>
 export interface IAlbum extends BaseModel {
     year: number;
     info?: string;
-    category?: ICategoryInAlbum;
+    category?: ICategory;
     pictures: Array<string>;
 }
 
@@ -63,6 +63,10 @@ export type INewAlbum = Omit<IAlbum, 'id' | 'slug' | 'pictures'>
 export type INewCategory = Omit<ICategory, 'id'>
 export type ICategoryListItem = Omit<ICategory, 'content' | 'user' | 'albums'>
 export type IArticleListItem = Omit<IArticle, 'id' | 'slug'>
+export type IUpdatePicture = Omit<
+IPicture,
+'id' | 'slug' | 'image' | 'thumb' | 'landscape' | 'publicID' | 'publicIDThumb'
+>
 
 // :::::::::::::::::::::: utils :::::::::::::::::::::::::::::::::::
 // test not null typeguard

@@ -2,7 +2,7 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { usePictures } from '../../hooks/usePicture'
-import { IPicture, isPictureArray } from '../../types'
+import { IAlbum, IPicture, isPictureArray } from '../../types'
 import {
   AlbumListItemContainer,
   ImageBox,
@@ -14,17 +14,14 @@ import { getPicsByIds } from '../picture/sharePictures'
 import { DataDivNoClick } from '../atoms/dataDivNoClick'
 
 export interface AlbumListItemProps {
-    id: string,
-    title: string,
-    slug: string,
-    info: string | undefined,
-    pictures: string[]
+    album: IAlbum
 }
 
 export const AlbumListItem:
-FC<AlbumListItemProps> = ({
-  title, slug, info, pictures,
-}) => {
+FC<AlbumListItemProps> = ({ album }) => {
+  const {
+    title, slug, info, pictures,
+  } = album
   const pictureData = usePictures()
   let threePics = new Array<IPicture>()
 
@@ -58,7 +55,7 @@ FC<AlbumListItemProps> = ({
 
       <Link
         style={{ textDecoration: 'none' }}
-        to={`/album/${slug}`}
+        to={`/galleria/${slug}`}
       >
         <Info>
           <h3>{title}</h3>

@@ -1,34 +1,39 @@
 import React, { FC } from 'react'
-import { IAlbum } from '../../../types'
+import { IAlbum, IPicture } from '../../../types'
 import { Title } from '../../atoms/Title'
 import { Text } from '../../atoms'
-import { Col, Grid, Row } from '../Admin.styles'
+import { AlbumContainer, ImageBox } from '../../album/AlbumDetails.styles'
+import { PictureMediaQueries } from '../../pictureLists/PictureMediaQueries'
+import { htmlText } from '../../utils/htmlText'
 
 type Props = {
     album: IAlbum
+    pictures: IPicture[]
 }
 
-export const AlbumDetailsAdmin: FC<Props> = (
-  {
-    album,
-  },
-) => {
-  const {
-    title, year, info, content, pictures,
-  } = album
+export const AlbumDetailsAdmin: FC<Props> = ({ album, pictures }) => {
+  const { title, year, content } = album
 
-  //   console.log('_ Album pics: ', pictures)
+  const images = (
+    <ImageBox full>
+      <PictureMediaQueries
+        imageList={pictures}
+        width={150}
+        height={150}
+      />
+    </ImageBox>
+  )
+
   return (
-    <Grid size={2}>
-      <Row>
-        <Col size={1}>
-          <Title>{title}</Title>
-          <Text>{year}</Text>
-          <Text>{info}</Text>
-          <Text>{content}</Text>
-        </Col>
-        <Col size={1}>{pictures}</Col>
-      </Row>
-    </Grid>
+    <AlbumContainer>
+      <Title>
+        <h2>{title}</h2>
+      </Title>
+      { images }
+      <h4>{year}</h4>
+      <Text>
+        {htmlText(content)}
+      </Text>
+    </AlbumContainer>
   )
 }

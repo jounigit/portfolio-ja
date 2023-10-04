@@ -1,31 +1,33 @@
-import React from 'react'
-// import styled from 'styled-components'
-import { useAlbums } from '../../../hooks/useAlbums'
+/* eslint-disable object-curly-newline */
+import styled from 'styled-components/macro'
+import { ErrorHandler, LoadingHandler } from '../../handlers'
 import { AlbumListItemAdmin } from './AlbumListItemAdmin'
+import { AlbumListContainer } from '../../album/AlbumList.styles'
+import { useAlbums } from '../../../hooks/useAlbums'
+import { TABLET } from '../../../styles/theme/breakpoints'
 
-// const Container = styled.div`
-//   display: grid;
-//   grid-template-rows: 1fr;
-// `
+const Container = styled(AlbumListContainer)`
+   margin-right: 4rem;
+   margin-bottom: 2rem;
+    @media ${TABLET} {
+    max-width: 100%;
+  }
+`
 
 export const AlbumListAdmin = (): JSX.Element => {
-  const albumsQuery = useAlbums()
-  let albums
+  const { isLoading, data, isError, error } = useAlbums()
 
-  if (albumsQuery.isSuccess) {
-    albums = albumsQuery.data
-  }
+  if (isError) return <ErrorHandler error={(error as Error)} />
+  if (isLoading) return <LoadingHandler />
+  if (!data) return <p>no albums yet.</p>
 
-  const mappedData = albums?.map((a) => (
-    <AlbumListItemAdmin
-      key={a.id}
-      album={a}
-    />
-  ))
+  const showAlbums = data.map(
+    (a) => <AlbumListItemAdmin key={a.id} album={a} />,
+  )
 
   return (
-    <>
-      { mappedData && mappedData }
-    </>
+    <Container>
+      {showAlbums}
+    </Container>
   )
 }

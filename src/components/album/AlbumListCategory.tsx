@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { AlbumListItem } from './AlbumListItem'
 import { AlbumListContainer } from './AlbumList.styles'
 import { filterAlbums } from './filterAlbums'
@@ -12,7 +12,7 @@ export const AlbumListCategory: FC<Props> = ({ albumsByCategory })
 : JSX.Element => {
   const filtered = filterAlbums(albumsByCategory && albumsByCategory)
 
-  const mappedData = filtered?.map((a) => (
+  const mappedData = filtered.map((a) => (
     <AlbumListItem
       key={a.id}
       album={a}

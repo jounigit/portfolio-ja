@@ -1,86 +1,138 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-useless-return */
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
-import { useDeleteAlbum } from '../../../hooks/useAlbums'
-// import styled from 'styled-components'
-import { usePictures } from '../../../hooks/usePicture'
+import React, { FC, Fragment, useEffect } from 'react'
+import styled from 'styled-components/macro'
+import toast from 'react-hot-toast'
 import { IAlbum } from '../../../types'
-// import { ICategory } from '../../../types'
-// import { Text } from '../../atoms'
-import { BlueButton, GreenButton, RedButton } from '../../atoms/Button'
-import { Title } from '../../atoms/Title'
 import {
   Col, Grid, Image, Row,
 } from '../Admin.styles'
-import { SelectAlbumCategory } from './SelectAlbumCategory'
+// import { SelectAlbumCategory } from './SelectAlbumCategory'
+import { ActionLinks } from '../../utils/ActionLinks'
+import { colors } from '../../../styles/theme'
+import { ImageGridListItem } from '../../album/AlbumListItem.styles'
+// import { Modal } from '../../modal/modal'
+// import { useModal } from '../../../hooks/useModal'
+// import { AlbumDelete } from './AlbumDelete'
+import { usePictures } from '../../../hooks/usePicture'
+import { SmallButton } from '../../atoms/Button'
+import {
+  IAlbumCatProps,
+  useDeleteAlbumCategory,
+  useUpdateAlbumCategory,
+} from '../../../hooks/useAlbums'
+import { SelectAlbumCategoryForm } from './SelectAlbumCategoryForm'
+
+const ImageItem = styled(ImageGridListItem)`
+    grid-template-columns: 1fr;
+    margin: 0.5rem 1rem 0.5rem 0;
+`
+const Links = styled.div`
+
+`
 
 interface ItemProps {
     album: IAlbum
 }
 
-export const AlbumListItemAdmin:
-FC<ItemProps> = ({ album }) => {
-  const pictureData = usePictures()
+export const AlbumListItemAdmin: FC<ItemProps> = ({ album }) => {
+  const { mutate: RemoveCat } = useDeleteAlbumCategory()
   const {
-    id, title, pictures,
+    status: UpdateCatStatus, mutate: UpdateCat,
+  } = useUpdateAlbumCategory()
+  // const { isShown, toggle } = useModal()
+  const {
+    id, title, pictures: picIds, category,
   } = album
+  const pictures = usePictures()
 
-  const firstPic = pictures && pictureData.find((p) => p.id === pictures[0])
+  const firstPic = pictures.find((p) => p.id === picIds[0])
+  const showPic = <Image src={firstPic?.landscape} alt="kuva" />
+  const catID = category ? category.id : ''
 
-  const { mutate } = useDeleteAlbum()
-
-  const remove = (): unknown => {
-    const ok = window.confirm(`remove album '${title}' '${id}'?`)
-    if (ok === false) {
-      return
+  useEffect(() => {
+    if (UpdateCatStatus === 'success') {
+      console.log('UseEffect Remove cat!!!!!')
+      toast.success('Album category updated successfully.')
     }
+  }, [UpdateCatStatus])
 
-    mutate(id)
+  // :::::::::::::: album category handlers :::::::::::::::::::
+  const removeCat = (): void => {
+    console.log('Remove cat!!!!!')
+    const ids: IAlbumCatProps = {
+      id,
+      catID,
+    }
+    RemoveCat(ids)
   }
 
-  const showPic = <Image src={firstPic?.landscape} alt="kuva" />
+  const updateAlbumCat = (data: IAlbumCatProps): void => {
+    console.log('Update cat!!!!!')
+    const ids = data
+    UpdateCat(ids)
+  }
 
-  const link = (
-    <Link to={`/admin/album/album-admin/${id}`}>
-      <BlueButton size={0.5}>
-        Katso
-      </BlueButton>
-    </Link>
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::
+  const removeButton = (
+    <SmallButton
+      onClick={removeCat}
+      color="green"
+    >
+      poista nykyinen
+    </SmallButton>
   )
 
-  const linkUpdate = (
-    <Link to={`/admin/album/album-update/${id}`}>
-      <GreenButton size={0.5}>
-        Päivitä
-      </GreenButton>
-    </Link>
+  const selectAlbumCategoryForm = (
+    <SelectAlbumCategoryForm
+      updateAlbumCat={updateAlbumCat}
+      album={album}
+    />
   )
+
+  // :::::::::::::::::::::::::::::::::::: //
+  const { link, linkUpdate, linkRemove } = ActionLinks({
+    id, path: 'album',
+  })
 
   return (
-    <Grid size={5}>
-      <Row>
-        <Col size={1}>{showPic}</Col>
-        <Col size={2}><Title>{title}</Title></Col>
-        <Col size={1}>
-          <SelectAlbumCategory album={album} />
-        </Col>
-        <Col
-          size={1}
-          // style={{
-          //   flex: 2, flexDirection: 'row', justifyContent: 'space-evenly',
-          // }}
-        >
-          {link}
-          {linkUpdate}
-          <RedButton
-            size={0.5}
-            onClick={() => remove()}
-          >
-            Poista
-          </RedButton>
-        </Col>
-      </Row>
-    </Grid>
+    <>
+      <Grid mb={6}>
+        <Row bgColor={colors.grey1} p={0.5}>
+
+          <Col w={2}>
+            <ImageItem width={150} height={150}>
+              {showPic}
+            </ImageItem>
+          </Col>
+
+          <Col w={2}>
+            <h3>{title}</h3>
+          </Col>
+          <Col w={2}>
+            { selectAlbumCategoryForm }
+            { category && removeButton }
+          </Col>
+
+          <Col w={1}>
+            <Links>
+              {link}
+            </Links>
+            <Links>
+              {linkUpdate}
+            </Links>
+            <Links>
+              {linkRemove}
+            </Links>
+          </Col>
+        </Row>
+      </Grid>
+      {/* <Modal
+        isShown={isShown}
+        hide={toggle}
+        headerText="Albumin poisto"
+        modalContent={
+          <AlbumDelete id={id} title={title} />
+        }
+      /> */}
+    </>
   )
 }

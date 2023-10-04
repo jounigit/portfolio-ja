@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/no-danger */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
@@ -19,9 +20,7 @@ export interface AlbumListItemProps {
 
 export const AlbumListItem:
 FC<AlbumListItemProps> = ({ album }) => {
-  const {
-    title, slug, info, pictures,
-  } = album
+  const { title, slug, info, pictures } = album
   const pictureData = usePictures()
   let threePics = new Array<IPicture>()
 

@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { TABLET } from '../../styles/theme/breakpoints'
 
 interface Props {
-    size?: number;
+    mb?: number;
+    w?: number;
     bgColor?: string;
+    p?: number;
 }
 
 export const GridDb = styled.div`
@@ -36,21 +38,23 @@ export const AsideDb = styled.div`
 export const MainDb = styled.div`
     grid-area: main;
     margin-top: 2rem;
-    width: 90%;
+    width: 100%;
 `
 
 export const Grid = styled.div<Props>`
-    margin-bottom: ${(props) => props.size}px;
+    margin-bottom: ${(props) => props.mb}px;
+    padding: ${(props) => props.p}rem;
 `
 
-export const Row = styled.div`
+export const Row = styled.div<Props>`
     display: flex;
-    /* border: 1px solid blue; */
     border: 1px solid grey;
+    background-color: ${(props) => props.bgColor};
+    padding: ${(props) => props.p}rem;
 `
 export const Col = styled.div<Props>`
-    flex: ${(props) => props.size};
-    /* border: 1px solid red; */
+    flex: ${(props) => props.w};
+    padding: ${(props) => props.p};
 `
 export const MainContainer = styled.div`
     margin: 0 auto 2rem;

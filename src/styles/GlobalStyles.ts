@@ -84,6 +84,11 @@ const GlobalStyles = createGlobalStyle<Prop>`
     color: ${colors.grey4};
   }
 
+  h5 {
+    font-size: .9rem;
+    color: ${colors.grey4};
+  }
+
   .photos {
     /* Prevent vertical gaps */
     line-height: 0;

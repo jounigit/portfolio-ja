@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { FC, Fragment } from 'react'
 import styled from 'styled-components/macro'
 import { PictureDelete } from './PictureDelete'
@@ -31,9 +30,9 @@ interface Props {
     picture: IPicture
 }
 
-export const PictureListItemAdmin: FC<Props> = (props) => {
+export const PictureListItemAdmin: FC<Props> = ({ picture }) => {
   const { isShown, toggle } = useModal()
-  const { id, title, landscape } = props.picture
+  const { id, title, landscape } = picture
 
   // :::::::::::::::::::::::::::::::::::: //
   const { linkUpdate, linkRemove } = ActionLinks({

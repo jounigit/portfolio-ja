@@ -9,6 +9,7 @@ import { getPicsByIds } from '../picture/sharePictures'
 import { usePictures } from '../../hooks/usePicture'
 import { AlbumDetails } from './AlbumDetails'
 import { useAlbumsData } from '../../hooks/useAlbums'
+import { htmlText } from '../utils/htmlText'
 
 type AlbumParams = {
   slug: string;
@@ -34,10 +35,6 @@ export const Album: FC = () => {
   const isGalleria = album?.category
   && album.category.id === '61ddd9ca7b278bacc2c31aed'
 
-  const innerHtmlTxt = album?.content
-    ? <div dangerouslySetInnerHTML={{ __html: album.content }} />
-    : ''
-
   return (
     <>
       { isGalleria
@@ -45,7 +42,7 @@ export const Album: FC = () => {
       <AlbumDetails
         title={album.title}
         pictures={albumPics}
-        content={innerHtmlTxt}
+        content={htmlText(album.content)}
         full
       />
       )}
@@ -54,7 +51,7 @@ export const Album: FC = () => {
         <AlbumDetails
           title={album.title}
           pictures={albumPics}
-          content={innerHtmlTxt}
+          content={htmlText(album.content)}
         />
       )}
     </>

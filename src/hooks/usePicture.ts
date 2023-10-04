@@ -1,15 +1,20 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   useMutation,
   UseMutationResult,
   useQuery, useQueryClient, UseQueryResult,
 } from 'react-query'
+import toast from 'react-hot-toast'
 import api from '../config/axiosConfig'
 import { IPicture, IUpdatePicture } from '../types'
 
+// ###################### services #########################################
 const getPictures = async (): Promise<IPicture[]> => {
-  const { data } = await api.get('/pictures')
-  return data
+  try {
+    const { data } = await api.get('/pictures')
+    return data
+  } catch (error) {
+    throw new Error('Can not get pictures.')
+  }
 }
 
 export const getPicture = async (id: string | undefined): Promise<IPicture> => {
@@ -17,18 +22,66 @@ export const getPicture = async (id: string | undefined): Promise<IPicture> => {
     Promise.reject(new Error('Invalid id'))
   }
   const { data } = await api.get(`/pictures/${id}`)
-  // console.log('# use Album: ', data)
   return data
 }
 
+//* *  Create */
+type CreateProps = {
+  image: File
+}
+
+export const createPicture = async (newPic: CreateProps): Promise<unknown> => {
+  try {
+    const response = await api.post<unknown>('/upload', newPic)
+    return response.data
+  } catch (error) {
+    throw new Error('Can not create picture.')
+  }
+}
+
+//* *  Update */
+interface IUpdateProps {
+  id: string;
+  newPicture: IUpdatePicture;
+}
+
+export const updatePicture = async ({ id, newPicture }: IUpdateProps)
+: Promise<IPicture> => {
+  try {
+    const response = await api.put(`/pictures/${id}`, newPicture)
+    console.table([response.data])
+    return response.data
+  } catch (error) {
+    throw new Error('Can not update picture')
+  }
+}
+
+//* *  delete */
+export const deletePicture = async (id: string): Promise<unknown> => {
+  try {
+    const response = await api.delete(`/pictures/${id}`)
+    return response.data
+  } catch (error) {
+    console.log('- DELETE CV', error)
+    throw new Error('Can not delete cv')
+  }
+}
+
+// ####################### query hooks ########################################
 export function usePictures(): IPicture[] {
-  const { isError, data } = useQuery('pictures', getPictures)
+  const {
+    isLoading, isSuccess, isError, data,
+  } = useQuery('pictures', getPictures)
 
   if (isError) {
-    throw new Error('Error fetching data.')
+    throw new Error('Error fetching picture data.')
   }
 
-  if (data !== undefined) {
+  if (isLoading) {
+    toast.loading('Loading pictures')
+  }
+
+  if (isSuccess && data) {
     return data
   }
   const dataE = new Array<IPicture>()
@@ -46,53 +99,9 @@ export function usePicturesQuery(): UseQueryResult<IPicture[], unknown> {
   return useQuery('pictures', getPictures)
 }
 
-// ###################### services #########################################
-//* *  Create */
-type CreateProps = {
-  image: File
-}
-
-interface IUpdateProps {
-  id: string;
-  newPicture: IUpdatePicture;
-}
-
-export const createPicture = async (newPic: CreateProps) => {
-  try {
-    const response = await api.post<unknown>('/upload', newPic)
-    return response.data
-  } catch (error) {
-    throw new Error('Can not create picture.')
-  }
-}
-
-//* *  Update */
-export const updatePicture = async ({ id, newPicture }: IUpdateProps)
-: Promise<IPicture> => {
-  try {
-    const response = await api.put(`/pictures/${id}`, newPicture)
-    console.table([response.data])
-    return response.data
-  } catch (error) {
-    throw new Error('Can not update picture')
-  }
-}
-
-//* *  delete */
-export const deletePicture = async (id: string) => {
-  try {
-    const response = await api.delete(`/pictures/${id}`)
-    return response.data
-  } catch (error) {
-    console.log('- DELETE CV', error)
-    throw new Error('Can not delete cv')
-  }
-}
-
-// ####################### query hooks ########################################
-
 // ####################### mutations ########################################
-export const useCreatePicture = () => useMutation({
+export const useCreatePicture = ():
+UseMutationResult<unknown, unknown, CreateProps, unknown> => useMutation({
   mutationFn: createPicture,
   onSuccess: (data, variables) => {
     console.log({ data })

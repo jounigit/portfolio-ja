@@ -2,23 +2,21 @@ import axios, { AxiosResponse } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { api } from '../config/axiosConfig'
 
-// const apiUrl = 'http://localhost:3001/api'
-// export const apiUrl = 'https://ja-api-ts.herokuapp.com/api'
 export const apiUrl = 'https://ja-api-ts.fly.dev/api'
-
-// let token = null
-// let config = Array<string>
-
-// function setToken(newToken: string): void {
-//   token = `Bearer ${newToken}`
-// config = {
-//   headers: { Authorization: token },
-// }
-// }
 
 export const getAll = async (url: string): Promise<AxiosResponse> => {
   const response = await axios.get(`${apiUrl}/${url}`)
   return response
+}
+
+export type IdUrlParams = {
+  id: string
+  url: string
+}
+
+export async function getOne<T>({ id, url }: IdUrlParams): Promise<T> {
+  const { data } = await api.get(`/${url}/${id}`)
+  return data
 }
 
 interface Params {

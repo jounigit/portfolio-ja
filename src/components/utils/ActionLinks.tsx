@@ -20,8 +20,9 @@ export function ActionLinks({
   }
 
   /** ************ links ************************ */
+  const idSlug = slug || id
   const link = (
-    <Link to={`/admin/${path}/${slug}`}>
+    <Link to={`/admin/${path}/${idSlug}`}>
       <SmallButton color="blue">
         Katso
       </SmallButton>

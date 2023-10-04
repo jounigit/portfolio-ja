@@ -1,6 +1,3 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-props-no-spreading */
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -42,8 +39,6 @@ const PictureForm = ({ handleData, picture, formName }: Props): JSX.Element => {
     register, handleSubmit, formState: { errors }, reset,
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
 
-  const showPic = picture
-    && <img src={picture.thumb} alt="" />
   //* ************ handle submit *************/
   console.log('FORM: ', picture && picture.title)
 
@@ -62,10 +57,11 @@ const PictureForm = ({ handleData, picture, formName }: Props): JSX.Element => {
   return (
     <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        {/* <ImageDiv> */}
-        {showPic}
-        {/* </ImageDiv> */}
+
+        {picture && <img src={picture.thumb} alt="" />}
+
         <h3 style={{ color: 'white', marginTop: '20px' }}>{formName}</h3>
+
         <InputWrapper>
 
           {/* ...................... */}
@@ -89,6 +85,7 @@ const PictureForm = ({ handleData, picture, formName }: Props): JSX.Element => {
           {/* ...................... */}
           <Label>Content</Label>
           <TextArea
+            rows={4}
             {...register('content')}
             defaultValue={picture?.content}
           />

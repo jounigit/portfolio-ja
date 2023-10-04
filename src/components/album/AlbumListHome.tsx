@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useAlbumsByCategory } from '../../hooks/useAlbums'
 import { AlbumListHomeItem } from './AlbumListHomeItem'
 import { AlbumHomePageContainer } from './AlbumHomePage.styles'
@@ -16,8 +16,7 @@ export const AlbumListHome: FC<Props> = (
 
   if (isLoading) return <h3>Loading ...</h3>
 
-  if (albumsByCategory === undefined) return <h3>No albums ...</h3>
-  console.log('## List Home Albums: ', albumsByCategory && albumsByCategory)
+  if (albumsByCategory === undefined) return <h3>No albums this category...</h3>
 
   const orderByYear = filterAlbums(albumsByCategory)
 

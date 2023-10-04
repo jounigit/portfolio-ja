@@ -82,12 +82,20 @@ export const Input = styled.input`
   padding: 10px;
   margin: 10px;
   width: 90%;
-  /* background: papayawhip; */
   border: none;
   border-radius: 3px;
   ::placeholder {
     color: palevioletred;
   }
+`
+export const Select = styled.select`
+  display: block;
+  font-size: 1rem;
+  padding: 10px;
+  margin: 10px;
+  width: 90%;
+  border: none;
+  border-radius: 3px;
 `
 
 export const TextArea = styled.textarea`

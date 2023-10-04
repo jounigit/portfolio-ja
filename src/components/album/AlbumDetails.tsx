@@ -10,7 +10,6 @@ interface Props {
     title: string;
     pictures: IPicture[];
     content: JSX.Element | '';
-    // eslint-disable-next-line react/require-default-props
     full?: boolean;
 }
 

@@ -4,6 +4,7 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 import { Album } from './components/album/Album'
 import Navbar from './components/nav/Navbar'
 import ArticlesPage from './pages/ArticlesPage'
@@ -24,17 +25,11 @@ const App: React.FC = () => {
   const isHomePage = (location.pathname === '/')
   const isAdminPage = location.pathname.includes('admin')
 
-  // if (location.pathname === '/admin' || location.pathname === '/admin/*') {
-  //   console.log('- Adminsivut ')
-  // }
-
-  // const navbar = !location.pathname.includes('admin') && <Navbar />
-  // const globalcss = !location.pathname.includes('admin') && <GlobalStyles />
-
   return (
     <>
+      <Toaster />
       <GlobalStyles homePage={isHomePage} adminPage={isAdminPage} />
-      { isHomePage && <Navbar /> }
+      { !isAdminPage && <Navbar /> }
       <Switch>
         <Route path="/admin" component={AdminPage} />
         <SiteContent>

@@ -1,7 +1,4 @@
 import axios from 'axios'
-// import { authHeader } from '../services/apiService'
-
-// let baseURL = 'http://localhost:3001/api'
 
 let baseURL = 'https://ja-api-ts.fly.dev/api'
 
@@ -32,19 +29,9 @@ export const apiAuth = axios.create({
   baseURL,
   headers: {
     'Content-Type': 'application/json',
-    // Authorization: `Bearer ${token}`,
   },
 })
 
 apiAuth.defaults.headers.common.Authorization = `Bearer ${token}`
-// apiAuth.defaults.headers.post.Authorization = `Bearer ${token}`
-// apiAuth.defaults.headers.delete.Authorization = `Bearer ${token}`
-
-// export const apiAuth = axios.create({
-//   baseURL,
-//   headers: {
-//     authHeader(),
-//   },
-// })
 
 export default api

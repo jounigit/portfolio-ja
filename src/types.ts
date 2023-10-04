@@ -45,9 +45,9 @@ export interface IAlbum extends BaseModel {
     pictures: Array<string>;
 }
 
-// export interface IAlbumDetails extends BaseModel {
-//     category?: string;
-//     pictures: IPicture[]
+// export interface IAlbumWithCategory extends IAlbum {
+//     year: number;
+//     category: ICategory;
 // }
 
 export interface IPicture extends BaseModel {
@@ -89,7 +89,7 @@ hasOwnProperty<X extends {}, Y extends PropertyKey>(obj: X, prop: Y)
   return obj.hasOwnProperty(prop)
 }
 
-export function hasArrOfObjWithProperty<A extends unknown[]>(value: A)
+export function hasPropertyArrObj<A extends unknown[]>(value: A)
 : value is A {
   if (
     value.some((v) => (

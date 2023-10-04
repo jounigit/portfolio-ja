@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useParams } from 'react-router-dom'
 import React, { Fragment, useEffect } from 'react'
 import toast from 'react-hot-toast'
@@ -9,13 +8,8 @@ import { ErrorHandler, LoadingHandler } from '../../handlers'
 import { IUpdatePicture } from '../../../types'
 import { Button } from '../../atoms/Button'
 
-// type = PicId {
-//   id: string;
-// }
-
 export const PictureUpdate = (): JSX.Element => {
   const { id } = useParams() as { id: string }
-  // const id = params.id as string
   const {
     isLoading, data: CurrentPic, isError, error,
   } = usePicture(id) // current picture

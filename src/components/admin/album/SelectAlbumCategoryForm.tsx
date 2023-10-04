@@ -1,14 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
-import styled from 'styled-components/macro'
-import toast from 'react-hot-toast'
-import {
-  IAlbumCatProps,
-  useUpdateAlbumCategory,
-} from '../../../hooks/useAlbums'
-import { useCategoriesData } from '../../../hooks/useCategories'
+import { FC, useState } from 'react'
+import styled from 'styled-components'
 import { IAlbum } from '../../../types'
+import { useCategoriesData } from '../../../hooks/useCategories'
 import { SmallButton } from '../../atoms/Button'
-import { useGoBack } from '../../../hooks/useGoBack'
+import { IAlbumCatProps } from '../../../hooks/useAlbums'
 
 const SelectForm = styled.form`
   max-width: 400px;
@@ -16,23 +11,15 @@ const SelectForm = styled.form`
     border-radius: 5px;
     padding: 1.5rem;
 `
-
 type Props = {
-  album: IAlbum
-}
+    updateAlbumCat: (data: IAlbumCatProps) => void
+    album: IAlbum
+  }
 
-export const SelectAlbumCategory: FC<Props> = ({ album }): JSX.Element => {
+export const SelectAlbumCategoryForm: FC<Props> = ({ updateAlbumCat, album })
+: JSX.Element => {
   const categoryData = useCategoriesData()
-  const { status: MutateStatus, mutate } = useUpdateAlbumCategory()
-  const goBack = useGoBack()
   const [selectedOption, setSelectedOption] = useState<string>('')
-
-  useEffect(() => {
-    if (MutateStatus === 'success') {
-      toast.success('Album category updated successfully.')
-      goBack()
-    }
-  }, [MutateStatus, goBack])
 
   /** ************ handle change ************************ */
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -41,13 +28,13 @@ export const SelectAlbumCategory: FC<Props> = ({ album }): JSX.Element => {
   }
 
   /** ************ handle submit ************************ */
-  console.log('-select cat: ', selectedOption)
+  console.log('-Select cat form: ', selectedOption)
   const handleSubmit = (): void => {
     const ids: IAlbumCatProps = {
       id: album.id,
       catID: selectedOption,
     }
-    mutate(ids)
+    updateAlbumCat(ids)
   }
 
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -56,7 +43,6 @@ export const SelectAlbumCategory: FC<Props> = ({ album }): JSX.Element => {
   const categoryOptions = categoryData.map((c) => (
     <option key={c.id} value={c.id}>{c.title}</option>
   ))
-
   return (
     <SelectForm onSubmit={handleSubmit}>
       <h4>Categoria:</h4>

@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useState } from 'react'
 
-export const useModal = () => {
+export const useModal = (): {
+  isShown: boolean;
+  toggle: () => void;
+} => {
   const [isShown, setIsShown] = useState<boolean>(false)
-  const toggle = () => setIsShown(!isShown)
+  const toggle = (): void => setIsShown(!isShown)
   return {
     isShown,
     toggle,

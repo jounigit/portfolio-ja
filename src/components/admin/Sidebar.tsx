@@ -11,6 +11,7 @@ const Container = styled.div`
 const SidebarLink = styled(NavLink)`
    display: block;
    padding: 0.4rem 0;
+      color: ${colors.grey2};
    font-size: 1.2rem;
    font-size: x-large;
     font-weight: 600;

@@ -15,11 +15,6 @@ const Home: React.FC = () => {
 
   const isLoaded = albumsQuery.isSuccess
   && picturesQuery.isSuccess && catOK
-  const token = localStorage.getItem('token')
-
-  if (token) {
-    console.log('-- Home token: ', token)
-  }
 
   return (
     <>

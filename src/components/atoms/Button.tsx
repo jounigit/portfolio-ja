@@ -12,7 +12,7 @@ export const Button = styled.button<Props>`
   display: inline-block;
   color: #5a6268;
   font-size: 0.9em;
-  width: ${props => props.width};
+  width: ${(props) => props.width};
   margin: ${(props) => props.size || 1}em;
   padding: 0.25em 1em;
   border: 1px solid #5a6268;
